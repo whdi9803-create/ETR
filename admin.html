@@ -108,7 +108,8 @@
   th, td{padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap;}
   th{color:var(--ink-soft); font-size:11px; letter-spacing:0.5px; text-transform:uppercase; font-weight:700; background:#0e0b09;}
   tr:last-child td{border-bottom:none;}
-  td.wrap-cell{white-space:normal; max-width:220px;}
+  td.wrap-cell{white-space:normal; max-width:220px; overflow-wrap:anywhere; word-break:break-word;}
+  td.referrer-cell{white-space:nowrap; max-width:160px; overflow:hidden; text-overflow:ellipsis;}
   .empty-state{padding:40px 20px; text-align:center; color:var(--ink-soft); font-size:13.5px;}
 
   /* Gallery admin */
@@ -441,7 +442,7 @@
           <td>${escapeHtml(row.utm_source)}</td>
           <td>${escapeHtml(row.utm_medium)}</td>
           <td>${escapeHtml(row.utm_campaign)}</td>
-          <td class="wrap-cell">${escapeHtml(row.referrer)}</td>
+          <td class="referrer-cell" title="${escapeHtml(row.referrer)}">${escapeHtml(row.referrer)}</td>
           <td>${new Date(row.created_at).toLocaleString('ko-KR')}</td>
           <td><button class="btn-danger" data-id="${row.id}">삭제</button></td>
         `;
