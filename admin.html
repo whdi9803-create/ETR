@@ -228,7 +228,7 @@
           <thead>
             <tr>
               <th>이름</th><th>연락처</th><th>인스타그램</th><th>어떻게 알게 됨</th><th>운동 정도</th><th>럭비 경험</th><th>참가 동기</th>
-              <th>유입(source)</th><th>medium</th><th>campaign</th><th>referrer</th><th>신청일시</th><th></th>
+              <th>referrer</th><th>신청일시</th><th></th>
             </tr>
           </thead>
           <tbody id="applicationsBody"></tbody>
@@ -439,9 +439,6 @@
           <td class="wrap-cell">${escapeHtml(row.exercise_frequency)}</td>
           <td class="wrap-cell">${escapeHtml(row.rugby_experience)}</td>
           <td class="wrap-cell">${escapeHtml(row.motivation)}</td>
-          <td>${escapeHtml(row.utm_source)}</td>
-          <td>${escapeHtml(row.utm_medium)}</td>
-          <td>${escapeHtml(row.utm_campaign)}</td>
           <td class="referrer-cell" title="${escapeHtml(row.referrer)}">${escapeHtml(row.referrer)}</td>
           <td>${new Date(row.created_at).toLocaleString('ko-KR')}</td>
           <td><button class="btn-danger" data-id="${row.id}">삭제</button></td>
@@ -500,10 +497,10 @@
   }
 
   document.getElementById('exportCsvBtn').addEventListener('click', () => {
-    const headers = ['이름','연락처','인스타그램','어떻게 알게 됨','운동 정도','럭비 경험','참가 동기','utm_source','utm_medium','utm_campaign','referrer','신청일시'];
+    const headers = ['이름','연락처','인스타그램','어떻게 알게 됨','운동 정도','럭비 경험','참가 동기','referrer','신청일시'];
     const rows = [headers.join(',')];
     applicationsCache.forEach(r => {
-      const vals = [r.name, r.phone, r.instagram, r.how_heard, r.exercise_frequency, r.rugby_experience, r.motivation, r.utm_source, r.utm_medium, r.utm_campaign, r.referrer, r.created_at]
+      const vals = [r.name, r.phone, r.instagram, r.how_heard, r.exercise_frequency, r.rugby_experience, r.motivation, r.referrer, r.created_at]
         .map(v => '"' + String(v || '').replace(/"/g, '""') + '"');
       rows.push(vals.join(','));
     });
