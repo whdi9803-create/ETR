@@ -260,7 +260,7 @@
       <a href="https://www.instagram.com/everyones_touchrugby?igsh=MXd1ODJoMzlxYmlvNA==" target="_blank">Instagram</a>
     </nav>
     <div class="nav-right">
-      <a class="nav-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSdVRgVQTnzcd91LwbHCJ0VP01rvjCeOh6MfNf8Ind-WyqffLA/viewform?fbclid=PAcGRvZgJleHRuA2FlbQExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp1fPLlmAJbLMe1PjrO-3GQY6djO_Gw39wh0rfuvcxAZHyG320RGPqIjpxb1n_aem_NRXfhNKSCwPAVHIl3M4--A&pli=1" target="_blank">웰컴데이 신청</a>
+      <a class="nav-cta" href="apply.html">웰컴데이 신청</a>
       <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
         메뉴
@@ -423,6 +423,11 @@
       dropdown.classList.remove('open');
     }
   });
+
+  function escapeHtml(str){
+    if(str === null || str === undefined) return '';
+    return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
 
   function getUtmParams(){
     const params = new URLSearchParams(window.location.search);
