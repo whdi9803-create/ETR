@@ -9,10 +9,11 @@ create table if not exists public.applications (
   id uuid primary key default gen_random_uuid(),
   name text not null,
   phone text not null,
-  email text,
-  gender text,
-  experience text,          -- 럭비/터치럭비 경험 유무
-  message text,             -- 하고 싶은 말 (선택)
+  instagram text,                 -- 인스타그램 아이디 (선택)
+  how_heard text,                 -- ETR을 어떻게 알게 되셨나요 (복수선택, 콤마로 join)
+  exercise_frequency text,        -- 평소 운동 정도 (복수선택, 콤마로 join)
+  rugby_experience text,          -- 럭비/터치럭비 경험 여부 (자유 서술)
+  motivation text,                -- 참가 동기 (선택)
   utm_source text,
   utm_medium text,
   utm_campaign text,

@@ -211,9 +211,9 @@
           <div class="sub">Last 7 days</div>
         </div>
         <div class="stat-card">
-          <div class="label">경험자 비율</div>
+          <div class="label">인스타그램 제공</div>
           <div class="value" id="statExperienced">–</div>
-          <div class="sub">Have experience</div>
+          <div class="sub">Shared Instagram handle</div>
         </div>
       </div>
 
@@ -226,7 +226,7 @@
         <table>
           <thead>
             <tr>
-              <th>이름</th><th>연락처</th><th>이메일</th><th>경험</th><th>메시지</th>
+              <th>이름</th><th>연락처</th><th>인스타그램</th><th>어떻게 알게 됨</th><th>운동 정도</th><th>럭비 경험</th><th>참가 동기</th>
               <th>유입(source)</th><th>medium</th><th>campaign</th><th>referrer</th><th>신청일시</th><th></th>
             </tr>
           </thead>
@@ -433,9 +433,11 @@
         tr.innerHTML = `
           <td>${escapeHtml(row.name)}</td>
           <td>${escapeHtml(row.phone)}</td>
-          <td>${escapeHtml(row.email)}</td>
-          <td>${escapeHtml(row.experience)}</td>
-          <td class="wrap-cell">${escapeHtml(row.message)}</td>
+          <td>${escapeHtml(row.instagram)}</td>
+          <td class="wrap-cell">${escapeHtml(row.how_heard)}</td>
+          <td class="wrap-cell">${escapeHtml(row.exercise_frequency)}</td>
+          <td class="wrap-cell">${escapeHtml(row.rugby_experience)}</td>
+          <td class="wrap-cell">${escapeHtml(row.motivation)}</td>
           <td>${escapeHtml(row.utm_source)}</td>
           <td>${escapeHtml(row.utm_medium)}</td>
           <td>${escapeHtml(row.utm_campaign)}</td>
@@ -467,13 +469,13 @@
 
     const today = applicationsCache.filter(r => new Date(r.created_at) >= startOfToday).length;
     const week = applicationsCache.filter(r => new Date(r.created_at) >= sevenDaysAgo).length;
-    const experienced = applicationsCache.filter(r => r.experience === '있음').length;
-    const experiencedPct = total > 0 ? Math.round((experienced / total) * 100) : 0;
+    const withInstagram = applicationsCache.filter(r => r.instagram && r.instagram.trim()).length;
+    const instagramPct = total > 0 ? Math.round((withInstagram / total) * 100) : 0;
 
     document.getElementById('statTotal').textContent = total;
     document.getElementById('statToday').textContent = today;
     document.getElementById('statWeek').textContent = week;
-    document.getElementById('statExperienced').textContent = experiencedPct + '%';
+    document.getElementById('statExperienced').textContent = instagramPct + '%';
 
     const sourceCounts = {};
     applicationsCache.forEach(r => {
@@ -497,10 +499,10 @@
   }
 
   document.getElementById('exportCsvBtn').addEventListener('click', () => {
-    const headers = ['이름','연락처','이메일','경험','메시지','utm_source','utm_medium','utm_campaign','referrer','신청일시'];
+    const headers = ['이름','연락처','인스타그램','어떻게 알게 됨','운동 정도','럭비 경험','참가 동기','utm_source','utm_medium','utm_campaign','referrer','신청일시'];
     const rows = [headers.join(',')];
     applicationsCache.forEach(r => {
-      const vals = [r.name, r.phone, r.email, r.experience, r.message, r.utm_source, r.utm_medium, r.utm_campaign, r.referrer, r.created_at]
+      const vals = [r.name, r.phone, r.instagram, r.how_heard, r.exercise_frequency, r.rugby_experience, r.motivation, r.utm_source, r.utm_medium, r.utm_campaign, r.referrer, r.created_at]
         .map(v => '"' + String(v || '').replace(/"/g, '""') + '"');
       rows.push(vals.join(','));
     });

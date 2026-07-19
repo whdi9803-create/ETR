@@ -178,7 +178,7 @@
   .form-row textarea:focus{
     outline:none; border-color:var(--orange-deep); box-shadow:0 0 0 3px rgba(232,95,28,0.18);
   }
-  .form-row.required label::after{content:" *"; color:var(--orange);}
+  .form-row.required > label::after{content:" *"; color:var(--orange);}
   .radio-group{display:flex; gap:10px; flex-wrap:wrap;}
   .radio-pill{
     position:relative;
@@ -326,32 +326,50 @@
       <div class="form-card">
         <form id="applyForm">
           <div class="form-row required">
-            <label for="name">이름</label>
-            <span class="label-en">Name</span>
+            <label for="name">성함을 알려주세요</label>
+            <span class="label-en">당일 출석 확인에 사용됩니다.</span>
             <input type="text" id="name" name="name" required autocomplete="name">
           </div>
           <div class="form-row required">
-            <label for="phone">연락처</label>
-            <span class="label-en">Phone number</span>
+            <label for="phone">휴대폰 번호를 입력해주세요</label>
+            <span class="label-en">공지 및 후기 설문 발송에만 사용됩니다.</span>
             <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="010-0000-0000">
           </div>
           <div class="form-row">
-            <label for="email">이메일 (선택)</label>
-            <span class="label-en">Email (optional)</span>
-            <input type="email" id="email" name="email" autocomplete="email">
+            <label for="instagram">인스타그램 아이디를 알려주세요 (선택)</label>
+            <span class="label-en">예: @everyones_touchrugby · 당일 현장 사진 태그 및 커뮤니티 안내에 활용됩니다.</span>
+            <input type="text" id="instagram" name="instagram" placeholder="@everyones_touchrugby" autocomplete="off">
           </div>
-          <div class="form-row">
-            <label>럭비/터치럭비 경험</label>
-            <span class="label-en">Rugby or touch rugby experience</span>
+          <div class="form-row required">
+            <label>ETR을 어떻게 알게 되셨나요?</label>
+            <span class="label-en">해당하는 항목을 모두 선택해주세요.</span>
             <div class="radio-group">
-              <label class="radio-pill"><input type="radio" name="experience" value="없음" checked><span>처음이에요</span></label>
-              <label class="radio-pill"><input type="radio" name="experience" value="있음"><span>경험 있어요</span></label>
+              <label class="radio-pill"><input type="checkbox" name="how_heard" value="인스타그램 ETR계정"><span>인스타그램 ETR계정</span></label>
+              <label class="radio-pill"><input type="checkbox" name="how_heard" value="인스타그램 광고/릴스"><span>인스타그램 광고/릴스</span></label>
+              <label class="radio-pill"><input type="checkbox" name="how_heard" value="지인 소개"><span>지인 소개</span></label>
+              <label class="radio-pill"><input type="checkbox" name="how_heard" value="크로스핏/F45/피트니스 센터 안내"><span>크로스핏/F45/피트니스 센터 안내</span></label>
+              <label class="radio-pill"><input type="checkbox" name="how_heard" value="온라인 커뮤니티(오픈채팅, 당근 등)"><span>온라인 커뮤니티(오픈채팅, 당근 등)</span></label>
             </div>
           </div>
+          <div class="form-row required">
+            <label>평소 운동을 어느 정도 하시나요?</label>
+            <span class="label-en">팀 구성 및 강도 조절에 참고합니다. 초보자 환영!</span>
+            <div class="radio-group">
+              <label class="radio-pill"><input type="checkbox" name="exercise_frequency" value="거의 안 함 (월1~2회 이하)"><span>거의 안 함 (월1~2회 이하)</span></label>
+              <label class="radio-pill"><input type="checkbox" name="exercise_frequency" value="가끔 함 (주1~2회)"><span>가끔 함 (주1~2회)</span></label>
+              <label class="radio-pill"><input type="checkbox" name="exercise_frequency" value="꾸준히 함 (주3회 이상)"><span>꾸준히 함 (주3회 이상)</span></label>
+              <label class="radio-pill"><input type="checkbox" name="exercise_frequency" value="운동이 직업 / 전문 선수 수준"><span>운동이 직업 / 전문 선수 수준</span></label>
+            </div>
+          </div>
+          <div class="form-row required">
+            <label for="rugbyExperience">럭비 혹은 터치럭비 경험이 있으신가요?</label>
+            <span class="label-en">팀 구성 및 강도 조절에 참고합니다. 초보자 환영!</span>
+            <input type="text" id="rugbyExperience" name="rugby_experience" required placeholder="예: 없음 / 학교 럭비부 경험 있음">
+          </div>
           <div class="form-row">
-            <label for="message">하고 싶은 말 (선택)</label>
-            <span class="label-en">Message (optional)</span>
-            <textarea id="message" name="message" placeholder="궁금한 점이나 하고 싶은 말을 자유롭게 남겨주세요."></textarea>
+            <label for="motivation">참가 동기 (선택)</label>
+            <span class="label-en">앞으로의 운영에 반영할 예정입니다. 솔직한 답변은 도움이 됩니다 😊</span>
+            <textarea id="motivation" name="motivation" placeholder="ETR에 참가하고 싶은 이유를 자유롭게 남겨주세요."></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary" id="submitBtn">신청서 제출하기 →</button>
@@ -444,19 +462,43 @@
   const formStatus = document.getElementById('formStatus');
   const successCard = document.getElementById('successCard');
 
+  function showError(message, debugDetail){
+    submitBtn.disabled = false;
+    submitBtn.textContent = '신청서 제출하기 →';
+    let html = escapeHtml(message);
+    if(debugDetail){
+      html += '<br><span style="font-size:11.5px; opacity:0.85;">(디버그 정보: ' + escapeHtml(debugDetail) + ')</span>';
+    }
+    formStatus.innerHTML = html;
+    formStatus.classList.add('show', 'error');
+  }
+
   form.addEventListener('submit', async function(e){
     e.preventDefault();
     formStatus.classList.remove('show', 'error', 'success');
 
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const experience = form.querySelector('input[name="experience"]:checked').value;
-    const message = document.getElementById('message').value.trim();
+    const instagram = document.getElementById('instagram').value.trim();
+    const howHeard = Array.from(form.querySelectorAll('input[name="how_heard"]:checked')).map(el => el.value);
+    const exerciseFrequency = Array.from(form.querySelectorAll('input[name="exercise_frequency"]:checked')).map(el => el.value);
+    const rugbyExperience = document.getElementById('rugbyExperience').value.trim();
+    const motivation = document.getElementById('motivation').value.trim();
 
     if(!name || !phone){
-      formStatus.textContent = '이름과 연락처는 필수 입력 항목입니다.';
-      formStatus.classList.add('show', 'error');
+      showError('성함과 휴대폰 번호는 필수 입력 항목입니다.');
+      return;
+    }
+    if(howHeard.length === 0){
+      showError('ETR을 어떻게 알게 되셨는지 하나 이상 선택해주세요.');
+      return;
+    }
+    if(exerciseFrequency.length === 0){
+      showError('평소 운동 정도를 하나 이상 선택해주세요.');
+      return;
+    }
+    if(!rugbyExperience){
+      showError('럭비/터치럭비 경험 여부를 입력해주세요.');
       return;
     }
 
@@ -466,18 +508,26 @@
     const payload = Object.assign({
       name: name,
       phone: phone,
-      email: email || null,
-      experience: experience,
-      message: message || null
+      instagram: instagram || null,
+      how_heard: howHeard.join(', '),
+      exercise_frequency: exerciseFrequency.join(', '),
+      rugby_experience: rugbyExperience,
+      motivation: motivation || null
     }, getUtmParams());
 
-    const { error } = await supabaseClient.from('applications').insert([payload]);
+    let result;
+    try {
+      result = await supabaseClient.from('applications').insert([payload]);
+    } catch (networkErr) {
+      showError('제출 중 문제가 발생했습니다.', String((networkErr && networkErr.message) || networkErr));
+      console.error(networkErr);
+      return;
+    }
 
+    const { error } = result;
     if(error){
-      submitBtn.disabled = false;
-      submitBtn.textContent = '신청서 제출하기 →';
-      formStatus.textContent = '제출 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.';
-      formStatus.classList.add('show', 'error');
+      const detail = [error.message, error.hint, error.code].filter(Boolean).join(' · ');
+      showError('제출 중 문제가 발생했습니다.', detail);
       console.error(error);
       return;
     }
