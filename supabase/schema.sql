@@ -26,7 +26,7 @@ alter table public.applications enable row level security;
 -- 누구나(비로그인 방문자) 신청서를 "제출"할 수 있어야 함
 create policy "applications_public_insert"
   on public.applications for insert
-  to anon
+  to public
   with check (true);
 
 -- 신청자 명단 조회/삭제는 로그인한 관리자만
@@ -55,10 +55,11 @@ create table if not exists public.gallery_photos (
 
 alter table public.gallery_photos enable row level security;
 
--- 갤러리 페이지는 로그인 없이 누구나 봐야 하므로 SELECT는 공개
+-- 갤러리 페이지는 로그인 없이 누구나 봐야 하고, 관리자 페이지(로그인 상태)에서도
+-- 조회할 수 있어야 하므로 to public (anon + authenticated 모두 포함)
 create policy "gallery_public_select"
   on public.gallery_photos for select
-  to anon
+  to public
   using (true);
 
 -- 추가/수정/삭제는 로그인한 관리자만
@@ -94,9 +95,11 @@ create table if not exists public.schedule (
 
 alter table public.schedule enable row level security;
 
+-- 홈페이지 스코어보드는 로그인 없이 누구나 봐야 하고, 관리자 페이지(로그인 상태)에서도
+-- 조회할 수 있어야 하므로 to public (anon + authenticated 모두 포함)
 create policy "schedule_public_select"
   on public.schedule for select
-  to anon
+  to public
   using (true);
 
 create policy "schedule_admin_insert"
@@ -115,7 +118,24 @@ create policy "schedule_admin_delete"
   using (true);
 
 -- ============================================================
--- 4) storage bucket : 갤러리 사진 파일 저장용 (public read)
+-- 4) 테이블 기본 권한(GRANT) : RLS 정책과는 별개로 필요합니다.
+--    RLS는 "허용된 행"을 걸러줄 뿐이고, 애초에 테이블에 접근할 수 있는
+--    권한 자체는 이 GRANT로 부여해야 합니다. 이게 없으면 정책이 맞아도
+--    "permission denied for table ..." 에러가 납니다.
+-- ============================================================
+grant usage on schema public to anon, authenticated;
+
+grant insert on public.applications to anon, authenticated;
+grant select, delete on public.applications to authenticated;
+
+grant select on public.gallery_photos to anon, authenticated;
+grant insert, update, delete on public.gallery_photos to authenticated;
+
+grant select on public.schedule to anon, authenticated;
+grant insert, update, delete on public.schedule to authenticated;
+
+-- ============================================================
+-- 5) storage bucket : 갤러리 사진 파일 저장용 (public read)
 -- ============================================================
 insert into storage.buckets (id, name, public)
 values ('gallery', 'gallery', true)
@@ -142,7 +162,7 @@ create policy "gallery_bucket_admin_delete"
   using (bucket_id = 'gallery');
 
 -- ============================================================
--- 5) 초기 일정 시드 (홈페이지 스코어보드에 표시될 다음 세션)
+-- 6) 초기 일정 시드 (홈페이지 스코어보드에 표시될 다음 세션)
 -- ============================================================
 insert into public.schedule (title, event_date, event_time, location, location_en, bring, tag)
 values (
