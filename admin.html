@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>ETR | 관리자</title>
+<link rel="icon" href="images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#0A0A0A; --cream-2:#161311; --ink:#F5EFE6; --ink-soft:#B8AFA3;
+    --ivory:#FFFCF6; --ivory-soft:rgba(255,252,246,0.78);
+    --orange:#FF7A33; --orange-deep:#E85F1C; --line:#2A2622;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans KR',sans-serif; background:var(--cream); color:var(--ink);
+    line-height:1.6; -webkit-font-smoothing:antialiased; word-break:keep-all; min-height:100vh;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .en{color:var(--ink-soft); font-style:italic;}
+
+  /* ---------- Top bar ---------- */
+  header{
+    background:linear-gradient(180deg, #1a1613 0%, #0e0b09 100%);
+    border-bottom:2px solid var(--orange);
+    padding:16px 0;
+  }
+  .topbar{display:flex; align-items:center; justify-content:space-between; max-width:1180px; margin:0 auto; padding:0 24px;}
+  .brand{display:flex; align-items:center; gap:11px;}
+  .brand-mark{width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg,#ff9558,#c9481a);
+    border:1.5px solid var(--orange-deep); display:flex; align-items:center; justify-content:center; padding:5px;}
+  .brand-mark img{width:100%; height:100%; object-fit:contain;}
+  .brand-text{font-weight:900; font-size:16px;}
+  .brand-text span{display:block; font-size:10px; font-weight:700; color:var(--orange-deep); letter-spacing:1px;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    padding:10px 18px; border-radius:9px; font-weight:700; font-size:13.5px;
+    border:none; cursor:pointer; transition:all .15s; font-family:inherit;
+  }
+  .btn-primary{background:var(--orange); color:#fff;}
+  .btn-primary:hover{background:var(--orange-deep);}
+  .btn-primary:disabled{opacity:0.55; cursor:not-allowed;}
+  .btn-ghost{background:#141110; border:1px solid var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--orange-deep); color:var(--orange-deep);}
+  .btn-danger{background:transparent; border:1px solid rgba(255,90,90,0.4); color:#ff9a9a; padding:7px 12px; font-size:12px;}
+  .btn-danger:hover{background:rgba(255,90,90,0.12);}
+
+  /* ---------- Login ---------- */
+  #loginScreen{min-height:calc(100vh - 71px); display:flex; align-items:center; justify-content:center; padding:40px 24px;}
+  .login-card{width:100%; max-width:380px; background:#141110; border:1px solid var(--line); border-radius:18px; padding:36px;}
+  .login-card h1{font-size:22px; font-weight:900; margin-bottom:4px;}
+  .login-card p.en{font-size:12.5px; margin-bottom:26px;}
+  .form-row{margin-bottom:16px;}
+  .form-row label{display:block; font-size:13px; font-weight:700; margin-bottom:6px;}
+  .form-row input, .form-row select, .form-row textarea{
+    width:100%; background:#0e0b09; border:1px solid var(--line); border-radius:9px;
+    padding:11px 13px; color:var(--ink); font-family:inherit; font-size:14px;
+  }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus{
+    outline:none; border-color:var(--orange-deep); box-shadow:0 0 0 3px rgba(232,95,28,0.18);
+  }
+  .form-status{margin-top:14px; font-size:13px; padding:10px 12px; border-radius:8px; display:none;}
+  .form-status.show{display:block;}
+  .form-status.error{background:rgba(255,90,90,0.12); border:1px solid rgba(255,90,90,0.4); color:#ff9a9a;}
+  .form-status.success{background:rgba(95,224,160,0.12); border:1px solid rgba(95,224,160,0.4); color:#5FE0A0;}
+
+  /* ---------- Dashboard ---------- */
+  #dashboard{display:none;}
+  #dashboard.show{display:block;}
+  .tabs{display:flex; gap:8px; margin:28px 0 28px; flex-wrap:wrap;}
+  .tab-btn{
+    background:#141110; border:1px solid var(--line); color:var(--ink-soft);
+    padding:10px 20px; border-radius:100px; font-weight:700; font-size:13.5px; cursor:pointer; transition:all .15s;
+    font-family:inherit;
+  }
+  .tab-btn:hover{color:var(--ink); border-color:var(--orange-deep);}
+  .tab-btn.active{background:var(--orange-deep); color:#fff; border-color:var(--orange-deep);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .panel-head{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:20px; flex-wrap:wrap;}
+  .panel-head h2{font-size:19px; font-weight:900;}
+  .panel-head p.en{font-size:12px; margin-top:2px;}
+
+  /* Stat tiles */
+  .stat-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px;}
+  .stat-card{background:#141110; border:1px solid var(--line); border-radius:14px; padding:20px;}
+  .stat-card .label{font-size:11.5px; color:var(--ink-soft); letter-spacing:0.5px; margin-bottom:8px; font-weight:700;}
+  .stat-card .value{font-size:28px; font-weight:900; color:var(--orange);}
+  .stat-card .sub{font-size:11.5px; color:var(--ink-soft); margin-top:4px;}
+
+  .source-breakdown{background:#141110; border:1px solid var(--line); border-radius:14px; padding:20px; margin-bottom:32px;}
+  .source-breakdown h3{font-size:14px; font-weight:800; margin-bottom:14px;}
+  .source-row{display:flex; align-items:center; gap:12px; margin-bottom:10px; font-size:13px;}
+  .source-row .name{width:140px; flex:none; color:var(--ink-soft); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .source-row .bar-track{flex:1; background:#0e0b09; border-radius:100px; height:8px; overflow:hidden;}
+  .source-row .bar-fill{height:100%; background:linear-gradient(90deg, var(--orange-deep), var(--orange)); border-radius:100px;}
+  .source-row .count{width:34px; flex:none; text-align:right; font-weight:700; color:var(--ink);}
+
+  /* Table */
+  .table-wrap{background:#141110; border:1px solid var(--line); border-radius:14px; overflow:auto;}
+  table{width:100%; border-collapse:collapse; font-size:13px; min-width:900px;}
+  th, td{padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap;}
+  th{color:var(--ink-soft); font-size:11px; letter-spacing:0.5px; text-transform:uppercase; font-weight:700; background:#0e0b09;}
+  tr:last-child td{border-bottom:none;}
+  td.wrap-cell{white-space:normal; max-width:220px;}
+  .empty-state{padding:40px 20px; text-align:center; color:var(--ink-soft); font-size:13.5px;}
+
+  /* Gallery admin */
+  .gallery-form{background:#141110; border:1px solid var(--line); border-radius:14px; padding:22px; margin-bottom:28px;
+    display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:14px; align-items:end;}
+  .gallery-form .form-row{margin-bottom:0;}
+  .gallery-admin-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:16px;}
+  .gallery-admin-card{background:#141110; border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+  .gallery-admin-card img{width:100%; aspect-ratio:4/3; object-fit:cover;}
+  .gallery-admin-card .cap{padding:14px;}
+  .gallery-admin-card .cap .t{font-weight:800; font-size:13.5px; margin-bottom:2px;}
+  .gallery-admin-card .cap .m{font-size:11.5px; color:var(--ink-soft); margin-bottom:10px;}
+  .compress-note{font-size:11.5px; color:var(--ink-soft); margin-top:6px;}
+
+  /* Schedule admin */
+  .schedule-form{background:#141110; border:1px solid var(--line); border-radius:14px; padding:22px; margin-bottom:28px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .schedule-form .form-row{margin-bottom:0;}
+  .schedule-form .form-row.full{grid-column:1 / -1;}
+
+  @media (max-width:900px){
+    .stat-grid{grid-template-columns:1fr 1fr;}
+    .gallery-form{grid-template-columns:1fr 1fr;}
+    .schedule-form{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .stat-grid{grid-template-columns:1fr;}
+    .gallery-form{grid-template-columns:1fr;}
+    .schedule-form{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark"><img src="images/logo.png" alt="ETR logo"></div>
+      <div class="brand-text">ETR 관리자<span>ADMIN CONSOLE</span></div>
+    </div>
+    <div id="topbarActions" style="display:none;">
+      <button class="btn btn-ghost" id="logoutBtn">로그아웃</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ Login ============ -->
+<div id="loginScreen">
+  <div class="login-card">
+    <h1>관리자 로그인</h1>
+    <p class="en">Admin sign in.</p>
+    <form id="loginForm">
+      <div class="form-row">
+        <label for="loginEmail">이메일</label>
+        <input type="email" id="loginEmail" required autocomplete="username">
+      </div>
+      <div class="form-row">
+        <label for="loginPassword">비밀번호</label>
+        <input type="password" id="loginPassword" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;" id="loginBtn">로그인</button>
+      <div class="form-status" id="loginStatus"></div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ Dashboard ============ -->
+<div id="dashboard">
+  <div class="wrap">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="applications">신청자</button>
+      <button class="tab-btn" data-tab="gallery">갤러리 관리</button>
+      <button class="tab-btn" data-tab="schedule">일정 관리</button>
+    </div>
+
+    <!-- ---- Applications ---- -->
+    <div class="tab-panel active" id="panel-applications">
+      <div class="panel-head">
+        <div>
+          <h2>신청자 명단</h2>
+          <p class="en">Applications.</p>
+        </div>
+        <button class="btn btn-ghost" id="exportCsvBtn">CSV로 내보내기 (엑셀) ↓</button>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="label">총 신청자</div>
+          <div class="value" id="statTotal">–</div>
+          <div class="sub">Total applications</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">오늘 신청</div>
+          <div class="value" id="statToday">–</div>
+          <div class="sub">Today</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">최근 7일</div>
+          <div class="value" id="statWeek">–</div>
+          <div class="sub">Last 7 days</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">경험자 비율</div>
+          <div class="value" id="statExperienced">–</div>
+          <div class="sub">Have experience</div>
+        </div>
+      </div>
+
+      <div class="source-breakdown">
+        <h3>유입 경로 (utm_source) · Traffic sources</h3>
+        <div id="sourceBreakdownList"></div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>이름</th><th>연락처</th><th>이메일</th><th>경험</th><th>메시지</th>
+              <th>유입(source)</th><th>medium</th><th>campaign</th><th>referrer</th><th>신청일시</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="applicationsBody"></tbody>
+        </table>
+        <div class="empty-state" id="applicationsEmpty" style="display:none;">아직 신청자가 없습니다.</div>
+      </div>
+    </div>
+
+    <!-- ---- Gallery ---- -->
+    <div class="tab-panel" id="panel-gallery">
+      <div class="panel-head">
+        <div>
+          <h2>갤러리 사진 관리</h2>
+          <p class="en">Gallery photos.</p>
+        </div>
+      </div>
+
+      <form class="gallery-form" id="galleryForm">
+        <div class="form-row">
+          <label>제목</label>
+          <input type="text" id="galleryTitle" placeholder="예: 정기 훈련" required>
+        </div>
+        <div class="form-row">
+          <label>영문 제목</label>
+          <input type="text" id="galleryTitleEn" placeholder="e.g. Weekly Training">
+        </div>
+        <div class="form-row">
+          <label>메타 (예: Training · 2026.06)</label>
+          <input type="text" id="galleryMeta" placeholder="Training · 2026.06">
+        </div>
+        <div class="form-row">
+          <label>사진 파일</label>
+          <input type="file" id="galleryFile" accept="image/*" required>
+        </div>
+        <div class="form-row full" style="grid-column:1/-1;">
+          <button type="submit" class="btn btn-primary" id="galleryUploadBtn">업로드 (자동 압축)</button>
+          <div class="compress-note" id="compressNote"></div>
+          <div class="form-status" id="galleryStatus"></div>
+        </div>
+      </form>
+
+      <div class="gallery-admin-grid" id="galleryAdminGrid"></div>
+      <div class="empty-state" id="galleryEmpty" style="display:none;">등록된 사진이 없습니다.</div>
+    </div>
+
+    <!-- ---- Schedule ---- -->
+    <div class="tab-panel" id="panel-schedule">
+      <div class="panel-head">
+        <div>
+          <h2>훈련/웰컴데이 일정 관리</h2>
+          <p class="en">Schedule.</p>
+        </div>
+      </div>
+
+      <form class="schedule-form" id="scheduleForm">
+        <div class="form-row">
+          <label>제목</label>
+          <input type="text" id="schTitle" placeholder="예: WELCOME DAY" required>
+        </div>
+        <div class="form-row">
+          <label>날짜</label>
+          <input type="date" id="schDate" required>
+        </div>
+        <div class="form-row">
+          <label>시간</label>
+          <input type="text" id="schTime" placeholder="예: 09:00">
+        </div>
+        <div class="form-row">
+          <label>장소 (국문)</label>
+          <input type="text" id="schLocation" placeholder="예: 잠원한강공원 트랙구장">
+        </div>
+        <div class="form-row">
+          <label>장소 (영문)</label>
+          <input type="text" id="schLocationEn" placeholder="e.g. Jamwon Hangang Park">
+        </div>
+        <div class="form-row">
+          <label>준비물</label>
+          <input type="text" id="schBring" placeholder="예: 운동복 · 축구화, 개인 물">
+        </div>
+        <div class="form-row">
+          <label>태그</label>
+          <input type="text" id="schTag" placeholder="예: 모집중 · Open">
+        </div>
+        <div class="form-row full" style="grid-column:1/-1;">
+          <button type="submit" class="btn btn-primary" id="scheduleAddBtn">일정 추가</button>
+          <div class="form-status" id="scheduleStatus"></div>
+        </div>
+      </form>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>제목</th><th>날짜</th><th>시간</th><th>장소</th><th>준비물</th><th>태그</th><th></th></tr>
+          </thead>
+          <tbody id="scheduleBody"></tbody>
+        </table>
+        <div class="empty-state" id="scheduleEmpty" style="display:none;">등록된 일정이 없습니다.</div>
+      </div>
+    </div>
+  </div>
+  <div style="height:60px;"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
+<script>
+  const loginScreen = document.getElementById('loginScreen');
+  const dashboard = document.getElementById('dashboard');
+  const topbarActions = document.getElementById('topbarActions');
+
+  function escapeHtml(str){
+    if(str === null || str === undefined) return '';
+    return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  // ---------------- Auth ----------------
+  async function checkSession(){
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if(session){
+      showDashboard();
+    } else {
+      loginScreen.style.display = 'flex';
+      dashboard.classList.remove('show');
+      topbarActions.style.display = 'none';
+    }
+  }
+
+  const loginForm = document.getElementById('loginForm');
+  const loginStatus = document.getElementById('loginStatus');
+  const loginBtn = document.getElementById('loginBtn');
+
+  loginForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    loginStatus.classList.remove('show', 'error', 'success');
+    loginBtn.disabled = true;
+    loginBtn.textContent = '로그인 중...';
+
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+
+    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+    loginBtn.disabled = false;
+    loginBtn.textContent = '로그인';
+
+    if(error){
+      loginStatus.textContent = '로그인 실패: 이메일 또는 비밀번호를 확인해 주세요.';
+      loginStatus.classList.add('show', 'error');
+      return;
+    }
+    showDashboard();
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', async function(){
+    await supabaseClient.auth.signOut();
+    location.reload();
+  });
+
+  function showDashboard(){
+    loginScreen.style.display = 'none';
+    dashboard.classList.add('show');
+    topbarActions.style.display = 'block';
+    loadApplications();
+    loadGallery();
+    loadSchedule();
+  }
+
+  // ---------------- Tabs ----------------
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ---------------- Applications ----------------
+  let applicationsCache = [];
+
+  async function loadApplications(){
+    const { data, error } = await supabaseClient
+      .from('applications')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if(error){ console.error(error); return; }
+    applicationsCache = data || [];
+    renderApplications();
+  }
+
+  function renderApplications(){
+    const tbody = document.getElementById('applicationsBody');
+    const empty = document.getElementById('applicationsEmpty');
+    tbody.innerHTML = '';
+
+    if(applicationsCache.length === 0){
+      empty.style.display = 'block';
+    } else {
+      empty.style.display = 'none';
+      applicationsCache.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${escapeHtml(row.name)}</td>
+          <td>${escapeHtml(row.phone)}</td>
+          <td>${escapeHtml(row.email)}</td>
+          <td>${escapeHtml(row.experience)}</td>
+          <td class="wrap-cell">${escapeHtml(row.message)}</td>
+          <td>${escapeHtml(row.utm_source)}</td>
+          <td>${escapeHtml(row.utm_medium)}</td>
+          <td>${escapeHtml(row.utm_campaign)}</td>
+          <td class="wrap-cell">${escapeHtml(row.referrer)}</td>
+          <td>${new Date(row.created_at).toLocaleString('ko-KR')}</td>
+          <td><button class="btn-danger" data-id="${row.id}">삭제</button></td>
+        `;
+        tr.querySelector('.btn-danger').addEventListener('click', () => deleteApplication(row.id));
+        tbody.appendChild(tr);
+      });
+    }
+
+    renderStats();
+  }
+
+  async function deleteApplication(id){
+    if(!confirm('이 신청자를 삭제할까요?')) return;
+    const { error } = await supabaseClient.from('applications').delete().eq('id', id);
+    if(error){ alert('삭제 중 문제가 발생했습니다.'); console.error(error); return; }
+    applicationsCache = applicationsCache.filter(r => r.id !== id);
+    renderApplications();
+  }
+
+  function renderStats(){
+    const total = applicationsCache.length;
+    const now = new Date();
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+    const today = applicationsCache.filter(r => new Date(r.created_at) >= startOfToday).length;
+    const week = applicationsCache.filter(r => new Date(r.created_at) >= sevenDaysAgo).length;
+    const experienced = applicationsCache.filter(r => r.experience === '있음').length;
+    const experiencedPct = total > 0 ? Math.round((experienced / total) * 100) : 0;
+
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statToday').textContent = today;
+    document.getElementById('statWeek').textContent = week;
+    document.getElementById('statExperienced').textContent = experiencedPct + '%';
+
+    const sourceCounts = {};
+    applicationsCache.forEach(r => {
+      const key = r.utm_source || '직접 유입 · Direct';
+      sourceCounts[key] = (sourceCounts[key] || 0) + 1;
+    });
+    const sorted = Object.entries(sourceCounts).sort((a,b) => b[1]-a[1]);
+    const maxCount = sorted.length ? sorted[0][1] : 0;
+    const list = document.getElementById('sourceBreakdownList');
+    if(sorted.length === 0){
+      list.innerHTML = '<div style="color:var(--ink-soft); font-size:13px;">데이터가 없습니다.</div>';
+    } else {
+      list.innerHTML = sorted.map(([name, count]) => `
+        <div class="source-row">
+          <div class="name">${escapeHtml(name)}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${maxCount ? (count/maxCount*100) : 0}%;"></div></div>
+          <div class="count">${count}</div>
+        </div>
+      `).join('');
+    }
+  }
+
+  document.getElementById('exportCsvBtn').addEventListener('click', () => {
+    const headers = ['이름','연락처','이메일','경험','메시지','utm_source','utm_medium','utm_campaign','referrer','신청일시'];
+    const rows = [headers.join(',')];
+    applicationsCache.forEach(r => {
+      const vals = [r.name, r.phone, r.email, r.experience, r.message, r.utm_source, r.utm_medium, r.utm_campaign, r.referrer, r.created_at]
+        .map(v => '"' + String(v || '').replace(/"/g, '""') + '"');
+      rows.push(vals.join(','));
+    });
+    const csvContent = '﻿' + rows.join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'etr_applications_' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // ---------------- Gallery ----------------
+  let galleryCache = [];
+
+  function galleryPublicUrl(path){
+    const { data } = supabaseClient.storage.from('gallery').getPublicUrl(path);
+    return data.publicUrl;
+  }
+
+  async function loadGallery(){
+    const { data, error } = await supabaseClient
+      .from('gallery_photos')
+      .select('*')
+      .order('sort_order', { ascending: true })
+      .order('created_at', { ascending: false });
+    if(error){ console.error(error); return; }
+    galleryCache = data || [];
+    renderGallery();
+  }
+
+  function renderGallery(){
+    const grid = document.getElementById('galleryAdminGrid');
+    const empty = document.getElementById('galleryEmpty');
+    grid.innerHTML = '';
+    if(galleryCache.length === 0){
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+    galleryCache.forEach(photo => {
+      const card = document.createElement('div');
+      card.className = 'gallery-admin-card';
+      card.innerHTML = `
+        <img src="${galleryPublicUrl(photo.image_path)}" alt="${escapeHtml(photo.title)}" loading="lazy">
+        <div class="cap">
+          <div class="t">${escapeHtml(photo.title)}</div>
+          <div class="m">${escapeHtml(photo.meta)}</div>
+          <button class="btn-danger" data-id="${photo.id}" data-path="${escapeHtml(photo.image_path)}">삭제</button>
+        </div>
+      `;
+      card.querySelector('.btn-danger').addEventListener('click', () => deletePhoto(photo.id, photo.image_path));
+      grid.appendChild(card);
+    });
+  }
+
+  async function deletePhoto(id, path){
+    if(!confirm('이 사진을 삭제할까요?')) return;
+    await supabaseClient.storage.from('gallery').remove([path]);
+    const { error } = await supabaseClient.from('gallery_photos').delete().eq('id', id);
+    if(error){ alert('삭제 중 문제가 발생했습니다.'); console.error(error); return; }
+    galleryCache = galleryCache.filter(p => p.id !== id);
+    renderGallery();
+  }
+
+  // Client-side compression so uploads stay small and pages load fast.
+  function compressImage(file, maxDim, quality){
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          let { width, height } = img;
+          if(Math.max(width, height) > maxDim){
+            const scale = maxDim / Math.max(width, height);
+            width = Math.round(width * scale);
+            height = Math.round(height * scale);
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+          canvas.toBlob(blob => resolve(blob), 'image/jpeg', quality);
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  const galleryForm = document.getElementById('galleryForm');
+  const galleryStatus = document.getElementById('galleryStatus');
+  const galleryUploadBtn = document.getElementById('galleryUploadBtn');
+  const compressNote = document.getElementById('compressNote');
+
+  galleryForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    galleryStatus.classList.remove('show', 'error', 'success');
+    compressNote.textContent = '';
+
+    const file = document.getElementById('galleryFile').files[0];
+    const title = document.getElementById('galleryTitle').value.trim();
+    const titleEn = document.getElementById('galleryTitleEn').value.trim();
+    const meta = document.getElementById('galleryMeta').value.trim();
+
+    if(!file || !title){
+      galleryStatus.textContent = '사진 파일과 제목은 필수입니다.';
+      galleryStatus.classList.add('show', 'error');
+      return;
+    }
+
+    galleryUploadBtn.disabled = true;
+    galleryUploadBtn.textContent = '압축 및 업로드 중...';
+
+    try{
+      const originalKB = Math.round(file.size / 1024);
+      const compressedBlob = await compressImage(file, 1800, 0.82);
+      const compressedKB = Math.round(compressedBlob.size / 1024);
+      compressNote.textContent = `자동 압축: ${originalKB}KB → ${compressedKB}KB`;
+
+      const fileName = `gallery/${Date.now()}_${Math.random().toString(36).slice(2, 8)}.jpg`;
+      const { error: uploadError } = await supabaseClient.storage
+        .from('gallery')
+        .upload(fileName, compressedBlob, { contentType: 'image/jpeg' });
+
+      if(uploadError) throw uploadError;
+
+      const { error: insertError } = await supabaseClient.from('gallery_photos').insert([{
+        image_path: fileName,
+        title: title,
+        title_en: titleEn || null,
+        meta: meta || null,
+        sort_order: galleryCache.length
+      }]);
+
+      if(insertError) throw insertError;
+
+      galleryStatus.textContent = '업로드 완료!';
+      galleryStatus.classList.add('show', 'success');
+      galleryForm.reset();
+      loadGallery();
+    } catch(err){
+      console.error(err);
+      galleryStatus.textContent = '업로드 중 문제가 발생했습니다.';
+      galleryStatus.classList.add('show', 'error');
+    } finally {
+      galleryUploadBtn.disabled = false;
+      galleryUploadBtn.textContent = '업로드 (자동 압축)';
+    }
+  });
+
+  // ---------------- Schedule ----------------
+  let scheduleCache = [];
+
+  async function loadSchedule(){
+    const { data, error } = await supabaseClient
+      .from('schedule')
+      .select('*')
+      .order('event_date', { ascending: true });
+    if(error){ console.error(error); return; }
+    scheduleCache = data || [];
+    renderSchedule();
+  }
+
+  function renderSchedule(){
+    const tbody = document.getElementById('scheduleBody');
+    const empty = document.getElementById('scheduleEmpty');
+    tbody.innerHTML = '';
+    if(scheduleCache.length === 0){
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+    scheduleCache.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${escapeHtml(row.title)}</td>
+        <td>${escapeHtml(row.event_date)}</td>
+        <td>${escapeHtml(row.event_time)}</td>
+        <td>${escapeHtml(row.location)}</td>
+        <td class="wrap-cell">${escapeHtml(row.bring)}</td>
+        <td>${escapeHtml(row.tag)}</td>
+        <td><button class="btn-danger" data-id="${row.id}">삭제</button></td>
+      `;
+      tr.querySelector('.btn-danger').addEventListener('click', () => deleteSchedule(row.id));
+      tbody.appendChild(tr);
+    });
+  }
+
+  async function deleteSchedule(id){
+    if(!confirm('이 일정을 삭제할까요?')) return;
+    const { error } = await supabaseClient.from('schedule').delete().eq('id', id);
+    if(error){ alert('삭제 중 문제가 발생했습니다.'); console.error(error); return; }
+    scheduleCache = scheduleCache.filter(r => r.id !== id);
+    renderSchedule();
+  }
+
+  const scheduleForm = document.getElementById('scheduleForm');
+  const scheduleStatus = document.getElementById('scheduleStatus');
+  const scheduleAddBtn = document.getElementById('scheduleAddBtn');
+
+  scheduleForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    scheduleStatus.classList.remove('show', 'error', 'success');
+    scheduleAddBtn.disabled = true;
+    scheduleAddBtn.textContent = '추가 중...';
+
+    const payload = {
+      title: document.getElementById('schTitle').value.trim(),
+      event_date: document.getElementById('schDate').value,
+      event_time: document.getElementById('schTime').value.trim() || null,
+      location: document.getElementById('schLocation').value.trim() || null,
+      location_en: document.getElementById('schLocationEn').value.trim() || null,
+      bring: document.getElementById('schBring').value.trim() || null,
+      tag: document.getElementById('schTag').value.trim() || null
+    };
+
+    const { error } = await supabaseClient.from('schedule').insert([payload]);
+
+    scheduleAddBtn.disabled = false;
+    scheduleAddBtn.textContent = '일정 추가';
+
+    if(error){
+      scheduleStatus.textContent = '추가 중 문제가 발생했습니다.';
+      scheduleStatus.classList.add('show', 'error');
+      console.error(error);
+      return;
+    }
+    scheduleStatus.textContent = '일정이 추가되었습니다.';
+    scheduleStatus.classList.add('show', 'success');
+    scheduleForm.reset();
+    loadSchedule();
+  });
+
+  checkSession();
+</script>
+
+</body>
+</html>

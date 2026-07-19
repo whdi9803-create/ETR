@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ETR | Gallery — Seoul</title>
+<!-- TODO: SITE_URL을 실제 배포 도메인으로 교체하세요 (예: https://etr-touchrugby.com/). SETUP.md 참고 -->
+<meta name="description" content="잠원한강공원 정기 훈련부터 서울 터치럭비 대회 현장까지, ETR이 함께한 순간들.">
+<link rel="icon" href="images/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ETR · Everyone's Touch Rugby">
+<meta property="og:title" content="ETR | Gallery — Seoul">
+<meta property="og:description" content="잠원한강공원 정기 훈련부터 서울 터치럭비 대회 현장까지, ETR이 함께한 순간들.">
+<meta property="og:image" content="SITE_URL/images/gallery-02.jpg">
+<meta property="og:url" content="SITE_URL/gallery.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ETR | Gallery — Seoul">
+<meta name="twitter:description" content="잠원한강공원 정기 훈련부터 서울 터치럭비 대회 현장까지, ETR이 함께한 순간들.">
+<meta name="twitter:image" content="SITE_URL/images/gallery-02.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -267,7 +280,7 @@
       <a href="https://www.instagram.com/everyones_touchrugby?igsh=MXd1ODJoMzlxYmlvNA==" target="_blank">Instagram</a>
     </nav>
     <div class="nav-right">
-      <a class="nav-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSdVRgVQTnzcd91LwbHCJ0VP01rvjCeOh6MfNf8Ind-WyqffLA/viewform?fbclid=PAcGRvZgJleHRuA2FlbQExAHNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp1fPLlmAJbLMe1PjrO-3GQY6djO_Gw39wh0rfuvcxAZHyG320RGPqIjpxb1n_aem_NRXfhNKSCwPAVHIl3M4--A&pli=1" target="_blank">웰컴데이 신청</a>
+      <a class="nav-cta" href="apply.html">웰컴데이 신청</a>
       <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
         메뉴
@@ -414,6 +427,8 @@
   </figure>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
 <script>
   const menuBtn = document.getElementById('menuBtn');
   const dropdown = document.getElementById('dropdownMenu');
@@ -437,15 +452,19 @@
   const lightboxMeta = document.getElementById('lightboxMeta');
   const lightboxClose = document.getElementById('lightboxClose');
 
-  document.querySelectorAll('.gallery-card').forEach(function(card){
-    card.addEventListener('click', function(){
-      lightboxImg.src = card.dataset.img;
-      lightboxImg.alt = card.dataset.title;
-      lightboxTitle.textContent = card.dataset.title;
-      lightboxTitleEn.textContent = card.dataset.titleEn;
-      lightboxMeta.textContent = card.dataset.meta;
-      lightbox.classList.add('open');
-    });
+  const galleryGrid = document.getElementById('galleryGrid');
+
+  // Event delegation: works for both the static fallback cards below
+  // and any cards rendered dynamically from Supabase.
+  galleryGrid.addEventListener('click', function(e){
+    const card = e.target.closest('.gallery-card');
+    if(!card) return;
+    lightboxImg.src = card.dataset.img;
+    lightboxImg.alt = card.dataset.title;
+    lightboxTitle.textContent = card.dataset.title;
+    lightboxTitleEn.textContent = card.dataset.titleEn;
+    lightboxMeta.textContent = card.dataset.meta;
+    lightbox.classList.add('open');
   });
   function closeLightbox(){ lightbox.classList.remove('open'); }
   lightboxClose.addEventListener('click', closeLightbox);
@@ -455,6 +474,45 @@
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape') closeLightbox();
   });
+
+  // ---------------- Dynamic gallery (Supabase) ----------------
+  // 관리자 페이지(admin.html)에서 사진을 추가/삭제하면 여기 자동 반영됩니다.
+  // Supabase가 아직 연결되지 않았거나 등록된 사진이 없으면, 위의 기본 사진 5장이 계속 보입니다.
+  function escapeHtml(str){
+    if(str === null || str === undefined) return '';
+    return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  async function loadDynamicGallery(){
+    try{
+      const { data, error } = await supabaseClient
+        .from('gallery_photos')
+        .select('*')
+        .order('sort_order', { ascending: true })
+        .order('created_at', { ascending: false });
+
+      if(error || !data || data.length === 0) return; // keep static fallback
+
+      galleryGrid.innerHTML = data.map(function(photo, i){
+        const { data: urlData } = supabaseClient.storage.from('gallery').getPublicUrl(photo.image_path);
+        const imgUrl = urlData.publicUrl;
+        const featureClass = i === 0 ? ' feature' : '';
+        return `
+          <div class="gallery-card${featureClass}" data-img="${imgUrl}" data-title="${escapeHtml(photo.title)}" data-title-en="${escapeHtml(photo.title_en)}" data-meta="${escapeHtml(photo.meta)}">
+            <div class="img-wrap"><img src="${imgUrl}" alt="${escapeHtml(photo.title)}" loading="lazy"></div>
+            <div class="gallery-cap">
+              <div class="g-title">${escapeHtml(photo.title)}</div>
+              <div class="g-title-en">${escapeHtml(photo.title_en)}</div>
+              <div class="g-meta">${escapeHtml(photo.meta)}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    } catch(err){
+      console.error('갤러리를 불러오지 못했습니다. 기본 사진을 표시합니다.', err);
+    }
+  }
+  loadDynamicGallery();
 </script>
 
 </body>
