@@ -53,7 +53,10 @@
   .en{ color:var(--ink-soft); font-weight:400; font-style:italic; }
 
   /* ============ Light / Dark section base rules ============ */
-  .light-section{ background:var(--cream); color:var(--ink); }
+  .light-section{
+    background:radial-gradient(120% 100% at 15% 0%, #FFFFFF 0%, var(--cream) 45%, var(--cream-2) 100%);
+    color:var(--ink);
+  }
   .light-section .en{ color:var(--ink-soft); }
   .dark-section{ background:var(--footer-bg); color:var(--ivory); }
   .dark-section .en{ color:var(--ivory-soft); }
