@@ -135,7 +135,7 @@
     position:absolute; inset:0; z-index:0;
     background-image:url('images/hero-welcomeday.jpg');
     background-size:cover; background-position:center 65%;
-    opacity:0.45;
+    opacity:0.5; filter:grayscale(1) contrast(1.1) brightness(0.9);
   }
   .hero::before{ content:""; position:absolute; inset:0; z-index:1; background:var(--sunset); opacity:0.57; }
   .hero::after{
@@ -345,6 +345,7 @@
     background-image:url('images/intro-touch.jpg');
     background-size:cover; background-position:center;
     transform:scale(1.04);
+    filter:grayscale(1) contrast(1.15) brightness(0.9);
   }
   .intro-gradient{
     position:absolute; inset:0; z-index:1;

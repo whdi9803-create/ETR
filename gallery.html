@@ -125,15 +125,20 @@
   /* ---------- Page banner (hero variant for sub-pages) ---------- */
   .page-banner{
     position:relative; color:var(--ivory); padding:56px 0 60px; overflow:hidden;
+    background-color:#141110;
+  }
+  .page-banner-photo{
+    position:absolute; inset:0; z-index:0;
     background-image:url('images/gallery-05.jpg');
     background-size:cover; background-position:center 40%;
+    filter:grayscale(1) contrast(1.1) brightness(0.9);
   }
-  .page-banner::before{ content:""; position:absolute; inset:0; background:var(--sunset); opacity:0.6; }
+  .page-banner::before{ content:""; position:absolute; inset:0; z-index:1; background:var(--sunset); opacity:0.6; }
   .page-banner::after{
-    content:""; position:absolute; inset:0;
+    content:""; position:absolute; inset:0; z-index:2;
     background:linear-gradient(180deg, rgba(20,14,10,0.35) 0%, rgba(20,14,10,0.2) 35%, rgba(20,14,10,0.85) 100%);
   }
-  .page-banner-inner{max-width:1120px; margin:0 auto; padding:0 24px; position:relative; z-index:2;}
+  .page-banner-inner{max-width:1120px; margin:0 auto; padding:0 24px; position:relative; z-index:3;}
   .breadcrumb{font-size:13px; color:rgba(255,255,255,0.75); margin-bottom:18px; display:flex; align-items:center; gap:6px;}
   .breadcrumb a{font-weight:700; color:rgba(255,255,255,0.92);}
   .breadcrumb a:hover{color:var(--orange);}
@@ -182,7 +187,7 @@
   }
   .gallery-card:hover{transform:translateY(-4px); box-shadow:0 16px 32px rgba(33,29,25,0.35);}
   .gallery-card .img-wrap{overflow:hidden; aspect-ratio:4/3;}
-  .gallery-card img{width:100%; height:100%; object-fit:cover; transition:transform .35s;}
+  .gallery-card img{width:100%; height:100%; object-fit:cover; transition:transform .35s; filter:grayscale(1) contrast(1.1) brightness(0.95);}
   .gallery-card:hover img{transform:scale(1.06);}
   .gallery-cap{padding:18px 20px;}
   .gallery-cap .g-title{font-weight:800; font-size:14.5px; color:var(--ink); margin-bottom:2px;}
@@ -199,7 +204,7 @@
   }
   .lightbox.open{opacity:1; visibility:visible;}
   .lightbox figure{max-width:1000px; width:100%; margin:0;}
-  .lightbox img{width:100%; max-height:76vh; object-fit:contain; border-radius:12px; box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+  .lightbox img{width:100%; max-height:76vh; object-fit:contain; border-radius:12px; box-shadow:0 24px 60px rgba(0,0,0,0.5); filter:grayscale(1) contrast(1.1) brightness(0.95);}
   .lightbox figcaption{color:var(--ivory); text-align:center; margin-top:16px;}
   .lightbox figcaption .g-title{font-weight:800; font-size:16px; margin-bottom:2px;}
   .lightbox figcaption .g-title-en{font-size:12.5px; color:var(--ivory-soft); font-style:italic; margin-bottom:4px;}
@@ -301,6 +306,7 @@
 </header>
 
 <section class="page-banner">
+  <div class="page-banner-photo"></div>
   <div class="page-banner-inner">
     <div class="breadcrumb"><a href="etr-touch-rugby-blackorange.html">홈 · Home</a> <span>/</span> <span>갤러리 · Gallery</span></div>
     <span class="eyebrow"><span class="dot"></span>2026 시즌 현장 기록 / 2026 Season Moments</span>
