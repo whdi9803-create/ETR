@@ -19,6 +19,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Black+Han+Sans&family=Anton&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
 <style>
   :root{
     --cream:#FFFBF3;
@@ -36,8 +38,8 @@
     --footer-bg:#0A0A0A;
     --sunset: linear-gradient(160deg, #1a1613 0%, #2a1f16 16%, #3d2416 30%, #7a3316 44%, #c9481a 56%, #e85f1c 68%, #ff7a33 82%, #7A2E0E 100%);
     --sunset-vivid: linear-gradient(135deg, #FF7A33 0%, #FF7A33 55%, #7A2E0E 100%);
-    --display-font: 'Black Han Sans', 'Noto Sans KR', sans-serif;
-    --display-font-en: 'Anton', 'Black Han Sans', sans-serif;
+    --display-font: 'Pretendard Variable', 'Pretendard', 'Noto Sans KR', sans-serif;
+    --display-font-en: 'Pretendard Variable', 'Pretendard', sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -128,36 +130,33 @@
     nav.links{display:none;}
   }
 
-  /* ---------- Hero (Welcome Day photo + sunset gradient overlay) ---------- */
+  /* ---------- Hero (gradient reveal, no photo) ---------- */
   .hero{
     position:relative; color:var(--ivory); padding:64px 0 0; overflow:hidden;
     background-color:#141110;
   }
-  .hero-photo{
-    position:absolute; inset:0; z-index:0;
-    background-image:url('images/hero-team.jpg');
-    background-size:cover; background-position:center 30%;
-    opacity:0; transform:scale(1.08);
+  .hero::before{
+    content:""; position:absolute; inset:0; z-index:1; background:var(--sunset);
+    opacity:0; transform:scale(1.15);
   }
-  .hero.reveal .hero-photo{
-    animation:heroPhotoIn 1.1s cubic-bezier(.2,.7,.3,1) forwards;
+  .hero.reveal::before{
+    animation:heroGradientBloom 1.3s cubic-bezier(.2,.7,.3,1) forwards;
   }
-  @keyframes heroPhotoIn{
-    from{ opacity:0; transform:scale(1.08); }
-    to{ opacity:0.65; transform:scale(1); }
+  @keyframes heroGradientBloom{
+    from{ opacity:0; transform:scale(1.15); }
+    to{ opacity:0.9; transform:scale(1); }
   }
   .hero .eyebrow, .hero-title, .hero-sub, .hero-ctas, .scoreboard{
     opacity:0; transform:translateY(18px);
   }
-  .hero.reveal .eyebrow{ animation:heroTextIn .7s ease forwards .25s; }
-  .hero.reveal .hero-title{ animation:heroTextIn .7s ease forwards .38s; }
-  .hero.reveal .hero-sub{ animation:heroTextIn .7s ease forwards .5s; }
-  .hero.reveal .hero-ctas{ animation:heroTextIn .7s ease forwards .62s; }
-  .hero.reveal .scoreboard{ animation:heroTextIn .7s ease forwards .74s; }
+  .hero.reveal .eyebrow{ animation:heroTextIn .7s ease forwards .35s; }
+  .hero.reveal .hero-title{ animation:heroTextIn .7s ease forwards .48s; }
+  .hero.reveal .hero-sub{ animation:heroTextIn .7s ease forwards .6s; }
+  .hero.reveal .hero-ctas{ animation:heroTextIn .7s ease forwards .72s; }
+  .hero.reveal .scoreboard{ animation:heroTextIn .7s ease forwards .84s; }
   @keyframes heroTextIn{
     to{ opacity:1; transform:translateY(0); }
   }
-  .hero::before{ content:""; position:absolute; inset:0; z-index:1; background:var(--sunset); opacity:0.5; }
   .hero::after{
     content:""; position:absolute; inset:0; z-index:2;
     background:linear-gradient(180deg, rgba(20,14,10,0.25) 0%, rgba(20,14,10,0.15) 35%, rgba(20,14,10,0.78) 100%);
@@ -396,10 +395,16 @@
   .intro-gate.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
   .intro-photo{
     position:absolute; inset:0; z-index:0;
-    background-image:url('images/intro-touch.jpg');
-    background-size:cover; background-position:center;
-    transform:scale(1.04);
+    background-image:url('images/hero-team.jpg');
+    background-size:cover; background-position:center 30%;
+    transform:scale(1.06);
     filter:grayscale(1) contrast(1.15) brightness(0.9);
+    opacity:0;
+    animation:introPhotoIn 1.3s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  @keyframes introPhotoIn{
+    0%{ opacity:0; transform:scale(1.06); filter:grayscale(0.2) contrast(1.05) brightness(1.35) saturate(1.3); }
+    100%{ opacity:1; transform:scale(1); filter:grayscale(1) contrast(1.15) brightness(0.9) saturate(1); }
   }
   .intro-gradient{
     position:absolute; inset:0; z-index:1;
@@ -419,18 +424,24 @@
   .intro-eyebrow{
     color:var(--orange); letter-spacing:3px; font-size:12.5px; font-weight:800;
     margin-bottom:18px; text-transform:uppercase;
+    opacity:0; transform:translateY(14px);
+    animation:introTextIn .6s ease forwards .5s;
   }
   .intro-slogan{
     font-family:var(--display-font-en);
     font-size:clamp(34px, 7vw, 76px); font-weight:400; color:#fff;
     line-height:1.1; letter-spacing:0.5px; margin-bottom:44px; text-shadow:0 6px 30px rgba(0,0,0,0.4);
+    opacity:0; transform:translateY(14px);
+    animation:introTextIn .7s ease forwards .65s;
   }
+  @keyframes introTextIn{ to{ opacity:1; transform:translateY(0); } }
   .intro-enter{
     background:transparent; border:2px solid var(--orange); color:#fff;
     padding:16px 34px; border-radius:100px; font-weight:800; letter-spacing:2px; font-size:13px;
     display:inline-flex; align-items:center; gap:10px; cursor:pointer;
     transition:background .2s, transform .2s;
-    animation:introPulse 2.2s ease-in-out infinite;
+    opacity:0; transform:translateY(14px);
+    animation:introTextIn .6s ease forwards .85s, introPulse 2.2s ease-in-out infinite 1.5s;
   }
   .intro-enter:hover{ background:var(--orange-deep); transform:translateY(-2px); }
   @keyframes introPulse{
@@ -495,7 +506,6 @@
 </header>
 
 <section class="hero">
-  <div class="hero-photo"></div>
   <div class="hero-inner">
     <span class="eyebrow"><span class="dot"></span>2026 시즌 · 신규 팀원 상시 모집 / 2026 Season · Always Open</span>
     <h1 class="hero-title">당신의 첫 터치를<br>응원합니다</h1>
