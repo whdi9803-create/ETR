@@ -394,9 +394,9 @@
   }
   .intro-gate.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
   .intro-photo{
-    position:absolute; inset:0; bottom:3%; z-index:0;
-    background-image:url('images/intro-players.jpg');
-    background-size:min(520px, 78%) auto; background-repeat:no-repeat; background-position:bottom center;
+    position:absolute; inset:0; z-index:0;
+    background-image:url('images/intro-full.jpg');
+    background-size:cover; background-repeat:no-repeat; background-position:center;
     transform:scale(1.06);
     filter:grayscale(1) contrast(1.15) brightness(0.9);
     opacity:0;
@@ -460,11 +460,7 @@
   <div class="intro-gradient"></div>
   <div class="intro-grain"></div>
   <div class="intro-overlay"></div>
-  <div class="intro-content">
-    <p class="intro-eyebrow">Everyone's Touch Rugby · Seoul</p>
-    <h1 class="intro-slogan">What is your<br>Second Sport?</h1>
-    <button class="intro-enter" id="introEnter" type="button">터치해서 시작하기 🏉</button>
-  </div>
+  <div class="intro-content" aria-label="터치해서 시작하기"></div>
 </section>
 
 <header>
@@ -799,7 +795,6 @@
   // ---------------- Intro gate ----------------
   (function(){
     const gate = document.getElementById('introGate');
-    const enterBtn = document.getElementById('introEnter');
     const hero = document.querySelector('.hero');
     if(sessionStorage.getItem('etrIntroSeen')){
       gate.style.display = 'none';
@@ -807,7 +802,7 @@
       return;
     }
     document.body.classList.add('intro-locked');
-    enterBtn.addEventListener('click', function(){
+    gate.addEventListener('click', function(){
       gate.classList.add('hidden');
       document.body.classList.remove('intro-locked');
       sessionStorage.setItem('etrIntroSeen', '1');
