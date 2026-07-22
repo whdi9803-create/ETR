@@ -3,9 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ETR | 회칙 — Seoul</title>
-<meta name="description" content="Everyone's Touch Rugby(ETR) 회칙.">
+<title>ETR | 파트너 · 후원사 — Seoul</title>
+<meta name="description" content="Everyone's Touch Rugby(ETR)와 함께하는 대회, 클럽, 후원사를 소개합니다.">
 <link rel="icon" href="images/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ETR · Everyone's Touch Rugby">
+<meta property="og:title" content="ETR | 파트너 · 후원사 — Seoul">
+<meta property="og:description" content="Everyone's Touch Rugby(ETR)와 함께하는 대회, 클럽, 후원사를 소개합니다.">
+<meta property="og:image" content="https://everyonestoucheugby.netlify.app/images/favicon.png">
+<meta property="og:url" content="https://everyonestoucheugby.netlify.app/partners.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ETR | 파트너 · 후원사 — Seoul">
+<meta name="twitter:description" content="Everyone's Touch Rugby(ETR)와 함께하는 대회, 클럽, 후원사를 소개합니다.">
+<meta name="twitter:image" content="https://everyonestoucheugby.netlify.app/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Black+Han+Sans&family=Anton&display=swap" rel="stylesheet">
@@ -38,7 +48,7 @@
   }
   a{color:inherit; text-decoration:none;}
   img{max-width:100%;display:block;}
-  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
   .dark-section{ background:var(--footer-bg); color:var(--ivory); }
 
   /* ---------- Header ---------- */
@@ -108,7 +118,7 @@
   }
   .page-banner-photo{
     position:absolute; inset:0; z-index:0;
-    background-image:url('images/gallery-04.jpg');
+    background-image:url('images/gallery-09.jpg');
     background-size:cover; background-position:center 30%;
     filter:grayscale(1) contrast(1.1) brightness(0.9);
   }
@@ -117,33 +127,40 @@
     content:""; position:absolute; inset:0; z-index:2;
     background:linear-gradient(180deg, rgba(20,14,10,0.35) 0%, rgba(20,14,10,0.2) 35%, rgba(20,14,10,0.85) 100%);
   }
-  .page-banner-inner{max-width:880px; margin:0 auto; padding:0 24px; position:relative; z-index:3;}
+  .page-banner-inner{max-width:1120px; margin:0 auto; padding:0 24px; position:relative; z-index:3;}
   .breadcrumb{font-size:13px; color:rgba(255,255,255,0.75); margin-bottom:18px; display:flex; align-items:center; gap:6px;}
   .breadcrumb a{font-weight:700; color:rgba(255,255,255,0.92);}
   .breadcrumb a:hover{color:var(--orange);}
   h1.page-title{
     font-family:var(--display-font);
-    font-size:clamp(30px, 5vw, 46px); line-height:1.2; font-weight:900;
+    font-size:clamp(32px, 5.5vw, 54px); line-height:1.16; font-weight:900;
     color:#fff; margin-bottom:10px; text-shadow:0 4px 24px rgba(0,0,0,0.3);
   }
-  .page-sub{font-size:14.5px; color:rgba(255,255,255,0.85);}
+  .page-sub{font-size:15.5px; color:rgba(255,255,255,0.95); max-width:560px;}
 
-  /* ---------- Document content ---------- */
-  section{padding:64px 0 96px;}
-  .doc-updated{font-size:13px; color:var(--ink-soft); margin-bottom:40px; padding-bottom:24px; border-bottom:1px solid var(--line);}
-  .doc h2{font-size:20px; font-weight:900; color:var(--orange-deep); margin:44px 0 18px;}
-  .doc h2:first-child{margin-top:0;}
-  .doc h3{font-size:16px; font-weight:800; margin:24px 0 8px;}
-  .doc p{font-size:14.5px; margin-bottom:10px; color:var(--ink);}
-  .doc ol.articles{list-style:none; counter-reset:none;}
-  .doc ul.sub{margin:6px 0 10px 18px;}
-  .doc ul.sub li{font-size:14px; color:var(--ink-soft); margin-bottom:4px; list-style:disc;}
-  .doc ol.sub{margin:6px 0 10px 18px;}
-  .doc ol.sub li{font-size:14.5px; color:var(--ink); margin-bottom:6px;}
+  /* ---------- Partners content ---------- */
+  section.pg{padding:64px 0;}
+  .pg-group{margin-bottom:56px;}
+  .pg-group:last-child{margin-bottom:0;}
+  .pg-kicker{color:var(--orange-deep); font-weight:800; font-size:12.5px; letter-spacing:2px; margin-bottom:8px; display:block;}
+  .pg-title{font-family:var(--display-font); font-size:24px; font-weight:900; margin-bottom:4px;}
+  .pg-desc{font-size:13.5px; color:var(--ink-soft); margin-bottom:24px;}
+  .logo-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .logo-grid.wide{grid-template-columns:repeat(2,1fr);}
+  .logo-card{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:24px; display:flex; align-items:center; justify-content:center;
+    min-height:120px; transition:transform .18s, box-shadow .18s, border-color .18s;
+  }
+  .logo-card:hover{transform:translateY(-3px); box-shadow:0 14px 28px rgba(33,29,25,0.08); border-color:var(--orange);}
+  .logo-card img{max-width:100%; max-height:76px; object-fit:contain;}
+  .logo-card.big img{max-height:92px;}
+  @media (max-width:860px){ .logo-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .logo-grid, .logo-grid.wide{grid-template-columns:1fr 1fr;} }
 
   /* ---------- Footer ---------- */
-  footer{padding-top:60px;}
-  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:44px;
+  footer{padding-top:40px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:32px; padding-bottom:32px;
     border-bottom:1px solid rgba(255,255,255,0.1); max-width:1120px; margin:0 auto; padding-left:24px; padding-right:24px;}
   .footer-brand{display:flex; gap:12px; align-items:flex-start;}
   .footer-brand .fmark{width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,0.08);
@@ -205,122 +222,66 @@
 <section class="page-banner">
   <div class="page-banner-photo"></div>
   <div class="page-banner-inner">
-    <div class="breadcrumb"><a href="etr-touch-rugby-blackorange.html">홈 · Home</a> <span>/</span> <span>회칙</span></div>
-    <h1 class="page-title">ETR 회칙</h1>
-    <p class="page-sub">Everyone's Touch Rugby 커뮤니티 운영 규정</p>
+    <div class="breadcrumb"><a href="etr-touch-rugby-blackorange.html">홈 · Home</a> <span>/</span> <span>파트너 · 후원사</span></div>
+    <h1 class="page-title">파트너 · 후원사</h1>
+    <p class="page-sub">ETR이 함께한 대회, 클럽, 그리고 후원사를 소개합니다.</p>
   </div>
 </section>
 
-<section>
-  <div class="wrap doc">
-    <div class="doc-updated">시행일: 2027년 1월 1일</div>
+<section class="pg">
+  <div class="wrap">
 
-    <h2>제1장 총칙</h2>
+    <div class="pg-group">
+      <span class="pg-kicker">TOURNAMENT</span>
+      <h2 class="pg-title">주최 · 대회</h2>
+      <p class="pg-desc">ETR 팀원들이 참가한 대회와 주최 단체입니다.</p>
+      <div class="logo-grid wide">
+        <div class="logo-card big"><img src="images/partners/seoul-rugby.png" alt="서울럭비협회 로고"></div>
+        <div class="logo-card big"><img src="images/partners/stt-2026.png" alt="Seoul Touch Tournament 2026 로고"></div>
+      </div>
+    </div>
 
-    <h3>제1조 (명칭)</h3>
-    <p>본 커뮤니티는 "모두의 터치럭비"(영문명: Everyone's Touch Rugby, 이하 "ETR")라 한다.</p>
+    <div class="pg-group">
+      <span class="pg-kicker">MAIN SPONSOR</span>
+      <h2 class="pg-title">메인 스폰서</h2>
+      <p class="pg-desc">ETR의 유니폼과 활동을 함께 후원합니다.</p>
+      <div class="logo-grid wide">
+        <div class="logo-card big"><img src="images/partners/trend-peak.png" alt="TREND PEAK 로고"></div>
+      </div>
+    </div>
 
-    <h3>제2조 (목적)</h3>
-    <p>ETR은 국적, 성별, 연령, 운동 경험과 무관하게 누구나 참여할 수 있는 터치럭비 활동을 통해 건강한 스포츠 문화를 확산하고, 지속 가능한 커뮤니티를 운영하는 것을 목적으로 한다.</p>
+    <div class="pg-group">
+      <span class="pg-kicker">SPONSORS</span>
+      <h2 class="pg-title">후원사</h2>
+      <p class="pg-desc">ETR의 활동을 응원하는 후원사들입니다.</p>
+      <div class="logo-grid">
+        <div class="logo-card"><img src="images/partners/all-round.png" alt="All Round 로고"></div>
+        <div class="logo-card"><img src="images/partners/plantune.png" alt="Plantune 로고"></div>
+        <div class="logo-card"><img src="images/partners/heygreen.png" alt="Heygreen 로고"></div>
+        <div class="logo-card"><img src="images/partners/progainer.png" alt="PROGAINER 로고"></div>
+      </div>
+    </div>
 
-    <h3>제3조 (소재지 및 활동지)</h3>
-    <p>ETR의 주 활동지는 서울특별시 강남구 압구정동 386 한강공원 잠원트랙구장으로 하며, 운영진 판단에 따라 변경될 수 있다.</p>
+    <div class="pg-group">
+      <span class="pg-kicker">RUGBY COMMUNITY</span>
+      <h2 class="pg-title">함께한 클럽</h2>
+      <p class="pg-desc">대회와 훈련에서 함께 땀 흘린 럭비 클럽들입니다.</p>
+      <div class="logo-grid">
+        <div class="logo-card"><img src="images/partners/club-madhoppers.png" alt="Seoul Madhoppers 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-tiger.png" alt="럭비 클럽 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-touchluck.png" alt="Touch Luck Rugby FC 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-seoulsisters.png" alt="Seoul Sisters R.F.C 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-hanriverpirates.png" alt="Han River Pirates Youth Rugby Club 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-camphumphreys.png" alt="Camp Humphreys Stars & Stripes Rugby Club 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-busan.png" alt="Busan Rugby 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-daeruk.png" alt="대럭전즈 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-schwarz.png" alt="Schwarz 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-noside.png" alt="Noside Women's Rugby 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-survivors.png" alt="Seoul Survivors R.F.C 로고"></div>
+        <div class="logo-card"><img src="images/partners/club-nationsity.png" alt="Seoul Nationsity Rugby Team 로고"></div>
+      </div>
+    </div>
 
-    <h2>제2장 회원</h2>
-
-    <h3>제4조 (회원의 구분)</h3>
-    <ol class="sub">
-      <li>체험회원 — 웰컴데이, 비기너클래스, 워크인을 통해 활동에 참여한 자</li>
-      <li>정회원 — 소정의 절차를 거쳐 정규 멤버로 등록된 자</li>
-    </ol>
-
-    <h3>제5조 (가입 절차)</h3>
-    <ol class="sub">
-      <li>체험회원은 웰컴데이, 비기너클래스, 워크인 중 하나의 경로로 참여할 수 있다.</li>
-      <li>정회원 전환 조건은 참여 경로에 따라 다음과 같다.
-        <ul class="sub">
-          <li>비기너클래스: 클래스 비용 납부로 연회비를 갈음하며, 별도 절차 없이 정회원으로 등록된다.</li>
-          <li>웰컴데이: 정회원 신청과 함께 월회비를 납부함으로써 정회원으로 등록된다.</li>
-          <li>워크인: 웰컴데이와 동일한 절차를 따른다.</li>
-        </ul>
-      </li>
-      <li>정회원 가입 시 본 회칙 및 개인정보처리방침에 동의한 것으로 본다.</li>
-    </ol>
-
-    <h3>제6조 (회비)</h3>
-    <ol class="sub">
-      <li>회비는 연회비와 월회비로 구분한다.</li>
-      <li>연회비는 1차 납부(~12월 31일)와 2차 납부(~익년 2월 말일)로 구분하여 납부한다.</li>
-      <li>비기너클래스를 통해 등록하는 경우, 클래스 비용 납부로 연회비를 갈음한다.</li>
-      <li>월회비는 선불로 하며, 연회비 납부 기한 이후 정회원으로 등록한 경우 적용된다. 매월 첫 번째 훈련일(매달 첫째 주 토요일)까지 납부한다.</li>
-      <li>회비의 구체적인 금액은 정회원 가입 시 별도로 안내한다.</li>
-      <li>납부 계좌는 추후 기재한다.</li>
-    </ol>
-
-    <h3>제7조 (회원의 권리)</h3>
-    <ol class="sub">
-      <li>정기훈련 및 커뮤니티 행사에 참여할 권리</li>
-      <li>서울시럭비협회 주최 STT(Seoul Touch Tournament)의 경우, 서울시럭비협회의 선수등록 절차에 따라 팀 소속으로 정식 등록된 자에 한해 출전 자격이 주어진다. ETR이 직접 주최하는 대회의 경우, 해당 대회 모집요강에 따라 참가 자격이 부여된다.</li>
-      <li>커뮤니티 내 의사결정 과정에 의견을 개진할 권리</li>
-    </ol>
-
-    <h3>제8조 (회원의 의무)</h3>
-    <ol class="sub">
-      <li>본 회칙 및 정기훈련 시 안내되는 안전수칙을 준수한다.</li>
-      <li>성별, 국적, 경력에 관계없이 다른 회원을 존중하며 차별적 언행을 하지 않는다.</li>
-      <li>ETR 명의의 활동(대회, 협업 행사 등)에서 커뮤니티의 명예를 훼손하는 행위를 하지 않는다.</li>
-      <li>정당한 사유 없이 회비를 미납할 경우, 유니폼·굿즈·물 등 회비로 취득·제공되는 물품 및 운동장 이용 등 회비 기반 혜택 이용이 제한될 수 있다.</li>
-    </ol>
-
-    <h3>제9조 (회계 투명성)</h3>
-    <p>ETR은 회비의 투명한 운용을 위해 다음을 실천한다.</p>
-    <ol class="sub">
-      <li>연 1회 이상 회비 수입·지출 내역을 정리하여 웹사이트 자료실에 공개한다.</li>
-      <li>회계 관리는 운영진 내 회계 담당자를 지정하여 운용하며, 회원의 열람 요청이 있을 경우 상세 내역을 안내한다.</li>
-    </ol>
-
-    <h2>제3장 운영</h2>
-
-    <h3>제10조 (시즌 운영)</h3>
-    <p>ETR은 연간 활동을 다음과 같이 구분하여 운영한다.</p>
-    <ol class="sub">
-      <li>비기너클래스 시즌 (3월~5월): 터치럭비 입문자를 위한 구조화된 다회차 교육 과정을 운영한다.</li>
-      <li>웰컴데이 및 썸머리그 시즌 (6월~9월): 매월 웰컴데이를 운영하며, 썸머리그(2027년 도입 예정)를 통해 생활체육 터치 팀들 간 정기 리그 경기를 진행한다.</li>
-      <li>비시즌 (12월~2월): 정기훈련 중심으로 운영하며, 신규 프로그램 모집은 시즌 개시 전 공지한다.</li>
-    </ol>
-    <p style="font-size:13px; color:var(--ink-soft);">(이외 자체적인 프로그램과 훈련 일정은 달라질 수 있다)</p>
-
-    <h3>제11조 (정기훈련)</h3>
-    <p>정기훈련의 일정 및 장소는 인스타그램 및 웹사이트를 통해 공지한다.</p>
-
-    <h2>제4장 징계 및 탈퇴</h2>
-
-    <h3>제12조 (탈퇴 및 환불)</h3>
-    <ol class="sub">
-      <li>회원은 자유롭게 탈퇴할 수 있으며, 별도 절차 없이 활동 중단으로 탈퇴 의사를 표시할 수 있다.</li>
-      <li>연회비 납부 후 탈퇴하는 경우, 2차 납부 마감일(2월 말일) 이전에 탈퇴 의사를 밝힌 회원에 한해 연회비를 100% 환불한다.</li>
-    </ol>
-
-    <h3>제13조 (징계)</h3>
-    <ol class="sub">
-      <li>다음 각 호에 해당하는 경우 징계 사유로 한다.
-        <ul class="sub">
-          <li>제8조(회원의 의무)를 중대하게 위반한 경우 (폭력·폭언·성희롱 등 타 회원에 대한 부적절한 언행)</li>
-          <li>정당한 사유 없이 회비를 3개월 이상 미납한 경우</li>
-          <li>ETR 명의의 활동에서 커뮤니티의 명예를 현저히 훼손한 경우</li>
-        </ul>
-      </li>
-      <li>운영진에 의해 징계 심의가 진행되며, 대상자에게 사전 경고 및 소명 기회를 부여한 후 활동 제한 또는 자격 박탈을 결정한다.</li>
-      <li>징계 결정은 대상자에게 사유와 함께 서면(카카오톡 등)으로 통지한다.</li>
-    </ol>
-
-    <h2>제5장 부칙</h2>
-
-    <h3>제14조 (개정)</h3>
-    <p>본 회칙은 운영진 협의를 통해 개정될 수 있으며, 개정 시 회원에게 공지한다.</p>
-
-    <h3>제15조 (시행일)</h3>
-    <p>본 회칙은 2027년 1월 1일부터 시행한다.</p>
   </div>
 </section>
 
@@ -338,8 +299,8 @@
       <h4>QUICK LINKS</h4>
       <ul>
         <li><a href="etr-touch-rugby-blackorange.html#about">소개 · About</a></li>
-        <li><a href="etr-touch-rugby-blackorange.html#join">참가안내 · Join</a></li>
         <li><a href="gallery.html">갤러리 · Gallery</a></li>
+        <li><a href="bylaws.html">회칙</a></li>
         <li><a href="privacy.html">개인정보처리방침</a></li>
       </ul>
     </div>
