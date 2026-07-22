@@ -387,16 +387,16 @@
   .intro-gate{
     position:fixed; inset:0; z-index:1000;
     background-color:#0a0a0a;
-    display:flex; align-items:center; justify-content:center;
+    display:flex; align-items:flex-start; justify-content:center;
     overflow:hidden; isolation:isolate;
     opacity:1; visibility:visible;
     transition:opacity .7s ease, visibility .7s ease;
   }
   .intro-gate.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
   .intro-photo{
-    position:absolute; inset:0; z-index:0;
-    background-image:url('images/hero-team.jpg');
-    background-size:cover; background-position:center 30%;
+    position:absolute; inset:0; bottom:3%; z-index:0;
+    background-image:url('images/intro-players.jpg');
+    background-size:min(520px, 78%) auto; background-repeat:no-repeat; background-position:bottom center;
     transform:scale(1.06);
     filter:grayscale(1) contrast(1.15) brightness(0.9);
     opacity:0;
@@ -420,7 +420,7 @@
     position:absolute; inset:0; z-index:3;
     background:linear-gradient(180deg, rgba(10,6,4,0.4) 0%, rgba(10,6,4,0.15) 45%, rgba(10,6,4,0.8) 100%);
   }
-  .intro-content{ position:relative; z-index:4; text-align:center; padding:24px; }
+  .intro-content{ position:relative; z-index:4; text-align:center; padding:24px; padding-top:14vh; width:100%; }
   .intro-eyebrow{
     color:var(--orange); letter-spacing:3px; font-size:12.5px; font-weight:800;
     margin-bottom:18px; text-transform:uppercase;
