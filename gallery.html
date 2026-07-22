@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="https://everyonestoucheugby.netlify.app/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Black+Han+Sans&family=Anton&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#FFFBF3;
@@ -35,6 +35,8 @@
     --line:#E6D8C6;
     --footer-bg:#0A0A0A;
     --sunset: linear-gradient(160deg, #1a1613 0%, #2a1f16 16%, #3d2416 30%, #7a3316 44%, #c9481a 56%, #e85f1c 68%, #ff7a33 82%, #7A2E0E 100%);
+    --display-font: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+    --display-font-en: 'Anton', 'Black Han Sans', sans-serif;
     --sunset-vivid: linear-gradient(135deg, #FF7A33 0%, #FF7A33 55%, #7A2E0E 100%);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
@@ -151,6 +153,7 @@
   .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange); animation:pulse 2s infinite;}
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
   h1.page-title{
+    font-family:var(--display-font);
     font-size:clamp(32px, 5.5vw, 54px); line-height:1.16; font-weight:900;
     color:#fff; margin-bottom:10px; text-shadow:0 4px 24px rgba(0,0,0,0.3);
   }
@@ -163,7 +166,7 @@
   .section-head{max-width:660px; margin-bottom:48px;}
   .kicker{color:var(--orange-deep); font-weight:800; font-size:12.5px; letter-spacing:2px; margin-bottom:14px; display:block;}
   .dark-section .kicker{color:var(--orange);}
-  h2.section-title{font-size:clamp(28px,4vw,40px); margin-bottom:6px; line-height:1.25; font-weight:900;}
+  h2.section-title{font-family:var(--display-font); font-size:clamp(28px,4vw,40px); margin-bottom:6px; line-height:1.25; font-weight:900;}
   .section-title-en{font-size:15px; font-style:italic; margin-bottom:16px;}
   .light-section .section-title-en{color:var(--ink-soft);}
   .dark-section .section-title-en{color:var(--ivory-soft);}
