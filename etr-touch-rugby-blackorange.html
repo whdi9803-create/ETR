@@ -218,10 +218,25 @@
 
   .our-story{
     margin-top:32px; padding:26px; background:var(--cream-2);
-    border:1.5px dashed var(--orange-deep); border-radius:16px;
+    border:1.5px solid var(--line); border-radius:16px;
   }
   .our-story h3{font-size:19px; font-weight:900; color:var(--ink); margin:8px 0 12px;}
   .our-story p{font-size:14px; color:var(--ink-soft); max-width:720px;}
+
+  .pathways{margin-top:56px;}
+  .pathways h3{font-size:22px; font-weight:900; color:var(--ink); margin:8px 0 10px;}
+  .pathways-desc{font-size:14px; color:var(--ink-soft); max-width:640px; margin-bottom:24px;}
+  .pathway-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .pathway-card{
+    display:block; background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:22px 18px; transition:transform .18s, box-shadow .18s, border-color .18s;
+  }
+  a.pathway-card:hover{transform:translateY(-4px); box-shadow:0 16px 32px rgba(33,29,25,0.08); border-color:var(--orange);}
+  .pathway-icon{font-size:26px; margin-bottom:12px;}
+  .pathway-card h4{font-size:15px; font-weight:800; color:var(--ink); margin-bottom:6px;}
+  .pathway-card p{font-size:12.5px; color:var(--ink-soft);}
+  @media (max-width:860px){ .pathway-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .pathway-grid{grid-template-columns:1fr;} }
 
   /* ---------- Join steps ---------- */
   .join{background:var(--cream-2);}
@@ -512,10 +527,38 @@
       </div>
     </div>
 
+    <div class="pathways">
+      <span class="kicker">ONE COMMUNITY, MULTIPLE PATHWAYS</span>
+      <h3>하나의 커뮤니티, 다양한 참여 경로</h3>
+      <p class="pathways-desc">ETR은 하나의 커뮤니티 안에서 다양한 참여 경로를 제공합니다. 어떤 경로로 들어오든, 모든 길은 ETR Community로 이어집니다.</p>
+      <div class="pathway-grid">
+        <a class="pathway-card" href="apply.html">
+          <div class="pathway-icon">👋</div>
+          <h4>Welcome Day</h4>
+          <p>처음 온 사람이 ETR을 경험하는 오픈 커뮤니티 데이. 지인 초대와 체험이 중심입니다.</p>
+        </a>
+        <a class="pathway-card" href="beginner-class.html">
+          <div class="pathway-icon">🎓</div>
+          <h4>Beginner Class</h4>
+          <p>정식으로 배우고 싶은 신규 멤버를 위한 3개월 입문 과정. 대회 출전까지 연결됩니다.</p>
+        </a>
+        <div class="pathway-card">
+          <div class="pathway-icon">🏃</div>
+          <h4>Regular Training</h4>
+          <p>기존 멤버가 꾸준히 성장하는 정기 훈련. 모든 멤버의 활동 기반입니다.</p>
+        </div>
+        <div class="pathway-card">
+          <div class="pathway-icon">🏅</div>
+          <h4>Tournament Teams</h4>
+          <p>대회 참가 시 목적과 수준에 따라 ETR Team 또는 MAD Team으로 구성됩니다.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="our-story">
       <span class="kicker">OUR STORY</span>
-      <h3>ETR은 이렇게 시작됐습니다</h3>
-      <p>(테스트용 임시 문구) 몇 명의 친구들이 잠원한강공원에서 공 하나로 시작한 모임이, 지금은 매주 함께 땀 흘리는 ETR이 되었습니다. 이 문단은 실제 창단 스토리로 교체될 예정입니다.</p>
+      <h3>ETR은 하나의 커뮤니티입니다</h3>
+      <p>처음 온 사람은 웰컴데이로, 배우고 싶은 사람은 비기너 클래스로, 꾸준히 성장하고 싶은 멤버는 정기 훈련으로, 대회에서는 목적과 수준에 따라 ETR Team 또는 MAD Team으로 함께합니다. 그룹을 나누는 것은 커뮤니티를 나누는 것이 아니라, 모두가 자신의 속도로 성장할 수 있도록 돕는 방법입니다. 자세한 운영 철학은 <a class="link-inline" href="docs/etr-operating-model.pdf" target="_blank">운영방안 문서</a>에서 확인하실 수 있습니다.</p>
     </div>
   </div>
 </section>
