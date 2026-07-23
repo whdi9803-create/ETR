@@ -442,30 +442,31 @@
   }
   .intro-enter{
     position:absolute; z-index:3;
-    left:32%; top:86%; width:36%; min-height:42px;
+    left:50%; top:50%; width:36%; min-height:42px;
     display:flex; align-items:center; justify-content:center;
     background:rgba(0,0,0,0.7); border:none;
     border-radius:4px; color:#fff; font-weight:800; letter-spacing:.2px;
     font-size:clamp(11px, 3vw, 13px); font-family:var(--display-font);
     cursor:pointer; padding:10px 12px;
-    opacity:0; transform:translateY(28px);
+    opacity:0; transform:translate(-50%,-50%) translateY(28px);
     animation:introSlideUp 1s cubic-bezier(.22,.7,.32,1) forwards .8s;
   }
   .intro-enter:hover{ background:rgba(0,0,0,0.85); }
   @keyframes introSlideDown{ to{ opacity:1; transform:translateY(0); } }
   @keyframes introSlideLeft{ to{ opacity:1; transform:translateX(0); } }
-  @keyframes introSlideUp{ to{ opacity:1; transform:translateY(0); } }
+  @keyframes introSlideUp{ to{ opacity:1; transform:translate(-50%,-50%) translateY(0); } }
   @media (min-width:768px){
     .intro-gate{ background-image:url('images/intro-bg-pc.jpg'); }
     .intro-slogan{
       top:22%; left:8.85%; right:auto; margin:0;
-      width:56%; max-width:560px; text-align:left;
+      width:60%; max-width:720px; text-align:left;
+      font-size:clamp(56px, 5.5vw, 84px);
     }
     .intro-players{
       width:52%;
     }
     .intro-enter{
-      left:42%; top:80.8%; width:17%; min-width:200px; min-height:64px;
+      width:17%; min-width:200px; min-height:64px;
     }
   }
 </style>
