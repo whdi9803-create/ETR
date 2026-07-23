@@ -433,9 +433,10 @@
   }
   .intro-players{
     position:absolute; z-index:1;
-    left:8.8%; top:44.4%; width:91.2%; height:41.6%;
-    background-image:url('images/intro-players-mobile.png');
-    background-size:100% 100%; background-repeat:no-repeat;
+    right:0; bottom:0; width:92%;
+    aspect-ratio:1554/1121;
+    background-image:url('images/intro-players-photo.png');
+    background-size:contain; background-position:bottom right; background-repeat:no-repeat;
     opacity:0; transform:translateX(50px);
     animation:introSlideLeft 1s cubic-bezier(.22,.7,.32,1) forwards .35s;
   }
@@ -443,14 +444,14 @@
     position:absolute; z-index:3;
     left:32%; top:79%; width:36%; min-height:42px;
     display:flex; align-items:center; justify-content:center;
-    background:#1a0f07; border:1.5px solid rgba(255,255,255,0.55);
-    border-radius:100px; color:#fff; font-weight:800; letter-spacing:.2px;
+    background:rgba(0,0,0,0.7); border:none;
+    border-radius:4px; color:#fff; font-weight:800; letter-spacing:.2px;
     font-size:clamp(11px, 3vw, 13px); font-family:var(--display-font);
-    cursor:pointer; padding:10px 12px; box-shadow:0 8px 24px rgba(0,0,0,0.5);
+    cursor:pointer; padding:10px 12px;
     opacity:0; transform:translateY(28px);
     animation:introSlideUp 1s cubic-bezier(.22,.7,.32,1) forwards .8s;
   }
-  .intro-enter:hover{ background:#2a1a0d; }
+  .intro-enter:hover{ background:rgba(0,0,0,0.85); }
   @keyframes introSlideDown{ to{ opacity:1; transform:translateY(0); } }
   @keyframes introSlideLeft{ to{ opacity:1; transform:translateX(0); } }
   @keyframes introSlideUp{ to{ opacity:1; transform:translateY(0); } }
@@ -461,8 +462,7 @@
       width:56%; max-width:560px; text-align:left;
     }
     .intro-players{
-      left:44.2%; top:21%; width:55.8%; height:68%;
-      background-image:url('images/intro-players-pc.png');
+      width:52%;
     }
     .intro-enter{
       left:42%; top:80.8%; width:17%; min-width:200px; min-height:64px;
@@ -475,7 +475,7 @@
 <section class="intro-gate" id="introGate">
   <h1 class="intro-slogan">What is your<br>Second Sport?</h1>
   <div class="intro-players"></div>
-  <button class="intro-enter" id="introEnter" type="button">터치해서 시작하기 🏉</button>
+  <button class="intro-enter" id="introEnter" type="button">터치해서 시작하기</button>
 </section>
 
 <header>
