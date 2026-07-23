@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETR | Gallery — Seoul</title>
+<meta name="description" content="잠원한강공원 정기 훈련부터 서울 터치럭비 대회 현장까지, ETR이 함께한 순간들.">
+<link rel="icon" href="images/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ETR · Everyone's Touch Rugby">
+<meta property="og:title" content="ETR | Gallery — Seoul">
+<meta property="og:description" content="잠원한강공원 정기 훈련부터 서울 터치럭비 대회 현장까지, ETR이 함께한 순간들.">
+<meta property="og:image" content="https://whdi9803-create.github.io/ETR/images/favicon.png">
+<meta property="og:url" content="https://whdi9803-create.github.io/ETR/gallery.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ETR | Gallery — Seoul">
+<meta name="twitter:description" content="잠원한강공원 정기 훈련부터 서울 터치럭비 대회 현장까지, ETR이 함께한 순간들.">
+<meta name="twitter:image" content="https://whdi9803-create.github.io/ETR/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&family=Black+Han+Sans&family=Anton&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+<style>
+  :root{
+    --cream:#FFFBF3;
+    --cream-2:#F1E4D3;
+    --ink:#2A2118;
+    --ink-soft:#8A7A68;
+    --ivory:#FFFCF6;
+    --ivory-soft:rgba(255,252,246,0.78);
+    --header-ink:#F5EFE6;
+    --orange:#FF7A33;
+    --orange-deep:#E85F1C;
+    --pink:#FF7A33;
+    --purple:#7A2E0E;
+    --line:#E6D8C6;
+    --footer-bg:#0A0A0A;
+    --sunset: linear-gradient(160deg, #1a1613 0%, #2a1f16 16%, #3d2416 30%, #7a3316 44%, #c9481a 56%, #e85f1c 68%, #ff7a33 82%, #7A2E0E 100%);
+    --display-font: 'Pretendard Variable', 'Pretendard', 'Noto Sans KR', sans-serif;
+    --display-font-en: 'Pretendard Variable', 'Pretendard', sans-serif;
+    --sunset-vivid: linear-gradient(135deg, #FF7A33 0%, #FF7A33 55%, #7A2E0E 100%);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans KR',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    word-break:keep-all;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+  .en{ color:var(--ink-soft); font-weight:400; font-style:italic; }
+
+  .light-section{ background:var(--cream); color:var(--ink); }
+  .light-section .en{ color:var(--ink-soft); }
+  .dark-section{ background:var(--footer-bg); color:var(--ivory); }
+  .dark-section .en{ color:var(--ivory-soft); }
+
+  /* ---------- Header / 상단 메뉴 ---------- */
+  header{
+    position:sticky; top:0; z-index:200;
+    background:linear-gradient(180deg, #1a1613 0%, #0e0b09 100%);
+    border-bottom:2px solid var(--orange);
+    box-shadow:0 2px 16px rgba(232,95,28,0.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:13px 24px; max-width:1120px; margin:0 auto; position:relative;
+  }
+  .brand{display:flex; align-items:center; gap:11px;}
+  .brand-mark{
+    width:44px; height:44px; border-radius:12px;
+    background:linear-gradient(135deg,#ff9558,#c9481a);
+    border:1.5px solid var(--orange-deep);
+    display:flex; align-items:center; justify-content:center;
+    flex:none; padding:6px;
+    box-shadow:0 3px 10px rgba(232,95,28,0.22);
+  }
+  .brand-mark img{width:100%; height:100%; object-fit:contain;}
+  .brand-text .en-name{font-weight:900; font-size:19px; letter-spacing:0.3px; color:var(--header-ink); line-height:1;}
+  .brand-text .kr-name{font-size:10.5px; color:var(--orange-deep); letter-spacing:1.5px; margin-top:3px; font-weight:700;}
+  nav.links{display:flex; gap:24px; align-items:center;}
+  nav.links a{color:var(--header-ink); font-size:14px; font-weight:700; transition:color .15s;}
+  nav.links a:hover{color:var(--orange-deep);}
+  nav.links a.current{color:var(--orange);}
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .nav-cta{
+    background:var(--orange-deep); color:#fff !important; padding:9px 18px;
+    border-radius:100px; font-weight:700; font-size:13.5px;
+    box-shadow:0 4px 14px rgba(232,95,28,0.4);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .nav-cta:hover{transform:translateY(-1px); box-shadow:0 6px 18px rgba(232,95,28,0.5); color:#fff !important;}
+
+  .menu-btn{
+    display:flex; align-items:center; gap:6px;
+    background:#141110; border:1.5px solid var(--orange); color:var(--orange);
+    padding:9px 14px; border-radius:100px; font-weight:700; font-size:13.5px;
+    cursor:pointer; transition:background .15s;
+  }
+  .menu-btn:hover{background:#241D15;}
+  .menu-btn svg{width:15px; height:15px;}
+  .dropdown-menu{
+    position:absolute; top:100%; right:24px; margin-top:10px;
+    background:#141110; border:1px solid var(--line); border-radius:14px;
+    box-shadow:0 16px 40px rgba(28,24,21,0.18);
+    min-width:220px; padding:10px; z-index:300;
+    opacity:0; visibility:hidden; transform:translateY(-8px);
+    transition:opacity .18s, transform .18s, visibility .18s;
+  }
+  .dropdown-menu.open{opacity:1; visibility:visible; transform:translateY(0);}
+  .dropdown-menu a{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:11px 12px; border-radius:9px; font-size:14.5px; font-weight:700; color:var(--header-ink);
+  }
+  .dropdown-menu a:hover{background:#241D15; color:var(--orange-deep);}
+  .dropdown-menu a span.arrow{color:var(--orange); font-weight:700;}
+  .dropdown-menu hr{border:none; border-top:1px solid var(--line); margin:6px 4px;}
+
+  @media (max-width:860px){
+    nav.links{display:none;}
+  }
+
+  /* ---------- Page banner (hero variant for sub-pages) ---------- */
+  .page-banner{
+    position:relative; color:var(--ivory); padding:56px 0 60px; overflow:hidden;
+    background-color:#141110;
+  }
+  .page-banner-photo{
+    position:absolute; inset:0; z-index:0;
+    background-image:url('images/gallery-05.jpg');
+    background-size:cover; background-position:center 40%;
+    filter:grayscale(1) contrast(1.1) brightness(0.9);
+  }
+  .page-banner::before{ content:""; position:absolute; inset:0; z-index:1; background:var(--sunset); opacity:0.6; }
+  .page-banner::after{
+    content:""; position:absolute; inset:0; z-index:2;
+    background:linear-gradient(180deg, rgba(20,14,10,0.35) 0%, rgba(20,14,10,0.2) 35%, rgba(20,14,10,0.85) 100%);
+  }
+  .page-banner-inner{max-width:1120px; margin:0 auto; padding:0 24px; position:relative; z-index:3;}
+  .breadcrumb{font-size:13px; color:rgba(255,255,255,0.75); margin-bottom:18px; display:flex; align-items:center; gap:6px;}
+  .breadcrumb a{font-weight:700; color:rgba(255,255,255,0.92);}
+  .breadcrumb a:hover{color:var(--orange);}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    color:#fff; font-weight:700; font-size:12.5px; letter-spacing:1.5px;
+    background:rgba(0,0,0,0.28); border:1px solid rgba(255,255,255,0.35);
+    padding:7px 14px; border-radius:100px; margin-bottom:22px; backdrop-filter:blur(4px);
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--orange); animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+  h1.page-title{
+    font-family:var(--display-font);
+    font-size:clamp(32px, 5.5vw, 54px); line-height:1.16; font-weight:900;
+    color:#fff; margin-bottom:10px; text-shadow:0 4px 24px rgba(0,0,0,0.3);
+  }
+  .page-title-en{font-size:clamp(14px,1.8vw,17px); color:rgba(255,255,255,0.85); font-style:italic; font-weight:500; margin-bottom:16px;}
+  .page-sub{font-size:15.5px; color:rgba(255,255,255,0.95); max-width:560px; margin-bottom:4px;}
+  .page-sub-en{font-size:13px; color:rgba(255,255,255,0.72); font-style:italic; max-width:560px;}
+
+  /* ---------- Section generic ---------- */
+  section{padding:84px 0;}
+  .section-head{max-width:660px; margin-bottom:48px;}
+  .kicker{color:var(--orange-deep); font-weight:800; font-size:12.5px; letter-spacing:2px; margin-bottom:14px; display:block;}
+  .dark-section .kicker{color:var(--orange);}
+  h2.section-title{font-family:var(--display-font); font-size:clamp(28px,4vw,40px); margin-bottom:6px; line-height:1.25; font-weight:900;}
+  .section-title-en{font-size:15px; font-style:italic; margin-bottom:16px;}
+  .light-section .section-title-en{color:var(--ink-soft);}
+  .dark-section .section-title-en{color:var(--ivory-soft);}
+  .section-desc{font-size:15.5px; max-width:580px; margin-bottom:4px;}
+  .section-desc-en{font-size:13.5px; font-style:italic; max-width:580px;}
+
+  /* ---------- Gallery ---------- */
+  .filter-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px;}
+  .filter-btn{
+    background:#FFFFFF; border:1px solid var(--line); color:var(--ink-soft);
+    padding:9px 18px; border-radius:100px; font-weight:700; font-size:13px;
+    cursor:pointer; transition:all .15s;
+  }
+  .filter-btn:hover{border-color:var(--orange-deep); color:var(--ink);}
+  .filter-btn.active{background:var(--orange-deep); color:#fff; border-color:var(--orange-deep);}
+
+  .gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:start;}
+  .gallery-card{
+    background:#FFFFFF; border:1px solid var(--line); border-radius:16px; overflow:hidden;
+    transition:transform .18s, box-shadow .18s; cursor:pointer; position:relative;
+  }
+  .gallery-card:hover{transform:translateY(-4px); box-shadow:0 16px 32px rgba(33,29,25,0.35);}
+  .gallery-card .img-wrap{overflow:hidden; aspect-ratio:4/3;}
+  .gallery-card img{width:100%; height:100%; object-fit:cover; transition:transform .35s;}
+  .gallery-card:hover img{transform:scale(1.06);}
+  .gallery-cap{display:none;}
+  .gallery-cap .g-title{font-weight:800; font-size:14.5px; color:var(--ink); margin-bottom:2px;}
+  .gallery-cap .g-title-en{font-size:11.5px; color:var(--ink-soft); font-style:italic; margin-bottom:6px;}
+  .gallery-cap .g-meta{font-size:12px; color:var(--ink-soft); opacity:0.85;}
+  .gallery-card.feature{grid-column:span 2; grid-row:span 2;}
+  .gallery-card.feature .img-wrap{aspect-ratio:8/7;}
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:500; background:rgba(8,5,4,0.94);
+    display:flex; align-items:center; justify-content:center; padding:32px;
+    opacity:0; visibility:hidden; transition:opacity .2s, visibility .2s;
+  }
+  .lightbox.open{opacity:1; visibility:visible;}
+  .lightbox figure{max-width:1000px; width:100%; margin:0;}
+  .lightbox img{width:100%; max-height:76vh; object-fit:contain; border-radius:12px; box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+  .lightbox figcaption{display:none;}
+  .lightbox figcaption .g-title{font-weight:800; font-size:16px; margin-bottom:2px;}
+  .lightbox figcaption .g-title-en{font-size:12.5px; color:var(--ivory-soft); font-style:italic; margin-bottom:4px;}
+  .lightbox figcaption .g-meta{font-size:12px; color:var(--ivory-soft); opacity:0.8;}
+  .lightbox-close{
+    position:absolute; top:24px; right:28px; width:42px; height:42px; border-radius:50%;
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); color:#fff;
+    font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .15s;
+  }
+  .lightbox-close:hover{background:rgba(255,255,255,0.2);}
+
+  /* ---------- Instagram CTA banner ---------- */
+  .cta-banner{ background:var(--orange-deep); border-radius:24px; padding:60px 48px; text-align:center; color:#fff; position:relative; overflow:hidden; }
+  .cta-banner > *{ position:relative; z-index:1; }
+  .cta-banner h2{font-size:clamp(26px,4vw,38px); margin-bottom:6px; font-weight:900;}
+  .cta-banner .cta-en{color:rgba(255,255,255,0.85); font-style:italic; margin-bottom:18px; font-size:14.5px;}
+  .cta-banner p.desc{color:rgba(255,255,255,0.95); margin-bottom:4px;}
+  .cta-banner p.desc-en{color:rgba(255,255,255,0.75); font-style:italic; margin-bottom:30px; font-size:13.5px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 26px; border-radius:10px; font-weight:700; font-size:14.5px;
+    transition:transform .15s, box-shadow .15s, background .15s;
+    border:none; cursor:pointer;
+  }
+  .cta-banner .btn-primary{background:#fff; color:var(--orange-deep); box-shadow:0 8px 24px rgba(0,0,0,0.2);}
+  .cta-banner .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,0.24);}
+
+  /* ---------- Footer ---------- */
+  footer{padding-top:60px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; padding-bottom:44px;
+    border-bottom:1px solid rgba(255,255,255,0.1);}
+  .footer-brand{display:flex; gap:12px; align-items:flex-start;}
+  .footer-brand .fmark{width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,0.08);
+    padding:6px; flex:none;}
+  .footer-brand .fmark img{width:100%;height:100%;object-fit:contain;}
+  .footer-brand .en-name{font-weight:900; color:var(--ivory); font-size:21px;}
+  .footer-brand .kr-name{font-size:11px; letter-spacing:1.5px; color:var(--orange); margin:3px 0 14px; font-weight:700;}
+  .footer-brand p{font-size:13.5px; max-width:280px; color:var(--ivory-soft);}
+  .footer-brand p.en{font-size:12px; font-style:italic; margin-top:6px;}
+  .footer h4{color:var(--ivory); font-size:12.5px; letter-spacing:1.5px; margin-bottom:16px; font-weight:800;}
+  .footer ul{list-style:none;}
+  .footer li{margin-bottom:11px; font-size:14px; color:var(--ivory-soft);}
+  .footer li a:hover{color:var(--ivory);}
+  .bottom-bar{display:flex; justify-content:space-between; align-items:center; padding:22px 0;
+    font-size:12.5px; color:var(--ivory-soft); flex-wrap:wrap; gap:10px;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:860px){
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-card.feature{grid-column:span 2; grid-row:span 1;}
+    .gallery-card.feature .img-wrap{aspect-ratio:4/3;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:480px){
+    .gallery-grid{grid-template-columns:1fr;}
+    .gallery-card.feature{grid-column:span 1;}
+    .cta-banner{padding:44px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="etr-touch-rugby-blackorange.html">
+      <div class="brand-mark"><img src="images/logo.png" alt="ETR logo"></div>
+      <div class="brand-text">
+        <div class="en-name">ETR</div>
+        <div class="kr-name">EVERYONE'S TOUCH RUGBY</div>
+      </div>
+    </a>
+    <nav class="links">
+      <a href="etr-touch-rugby-blackorange.html#about">소개 · About</a>
+      <a href="etr-touch-rugby-blackorange.html#join">참가안내 · Join</a>
+      <a href="gallery.html" class="current">갤러리 · Gallery</a>
+      <a href="etr-touch-rugby-blackorange.html#access">자료실 · Resources</a>
+      <a href="https://www.instagram.com/everyones_touchrugby?igsh=MXd1ODJoMzlxYmlvNA==" target="_blank">Instagram</a>
+    </nav>
+    <div class="nav-right">
+      <a class="nav-cta" href="apply.html">웰컴데이 신청</a>
+      <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        메뉴
+      </button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <a href="etr-touch-rugby-blackorange.html#about">소개 · About <span class="arrow">→</span></a>
+        <a href="etr-touch-rugby-blackorange.html#join">참가안내 · Join <span class="arrow">→</span></a>
+        <a href="gallery.html">갤러리 · Gallery <span class="arrow">→</span></a>
+        <a href="beginner-class.html">비기너 클래스 신청 <span class="arrow">→</span></a>
+        <a href="partners.html">파트너 · 후원사 <span class="arrow">→</span></a>
+        <a href="etr-touch-rugby-blackorange.html#access">자료실 · Resources <span class="arrow">→</span></a>
+        <hr>
+        <a href="privacy.html">개인정보처리방침 <span class="arrow">→</span></a>
+        <hr>
+        <a href="https://www.instagram.com/everyones_touchrugby?igsh=MXd1ODJoMzlxYmlvNA==" target="_blank">Instagram <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-banner">
+  <div class="page-banner-photo"></div>
+  <div class="page-banner-inner">
+    <div class="breadcrumb"><a href="etr-touch-rugby-blackorange.html">홈 · Home</a> <span>/</span> <span>갤러리 · Gallery</span></div>
+    <span class="eyebrow"><span class="dot"></span>2026 시즌 현장 기록 / 2026 Season Moments</span>
+    <h1 class="page-title">우리가 뛴 순간들</h1>
+    <p class="page-sub">잠원한강공원의 정기 훈련부터 서울 터치럭비 대회 현장까지, ETR이 함께한 순간들을 모았습니다.</p>
+  </div>
+</section>
+
+<section id="photos" class="light-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">PHOTO WALL</span>
+      <h2 class="section-title">갤러리</h2>
+      <p class="section-desc">사진을 클릭하면 크게 볼 수 있습니다. 더 많은 현장 사진은 인스타그램에서 확인해 보세요.</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-card feature" data-img="images/gallery-05.jpg" data-title="정기 훈련 · 잠원한강공원" data-meta="Training · 2026.06">
+        <div class="img-wrap"><img src="images/gallery-05.jpg" alt="잠원한강공원에서 노을을 배경으로 훈련하는 ETR 팀원들" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">정기 훈련 · 잠원한강공원</div>
+          <div class="g-meta">Training · 2026.06</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-img="images/gallery-01.jpg" data-title="대회 참가 · ETR 팀 기념사진" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-01.jpg" alt="터치럭비 대회에서 ETR 깃발과 함께 찍은 팀 기념사진" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">대회 참가 · ETR 팀 기념사진</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-img="images/gallery-02.jpg" data-title="서울 터치럭비 대회 · 전체 팀 단체사진" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-02.jpg" alt="서울 터치럭비 대회에 참가한 여러 팀의 단체사진" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">서울 터치럭비 대회 · 단체사진</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-img="images/gallery-04.jpg" data-title="팀 허들 · 경기 전 작전 타임" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-04.jpg" alt="경기 전 둥글게 모여 작전을 나누는 팀원들" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">팀 허들 · 경기 전 작전 타임</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-img="images/gallery-07.jpg" data-title="경기 후 한 컷" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-07.jpg" alt="경기 후 음료를 들고 포즈를 취하는 팀원" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">경기 후 한 컷</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-09.jpg" data-title="대회 단체사진" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-09.jpg" alt="선수단이 대회 배너 앞에 모여 찍은 단체사진" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">대회 단체사진</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-10.jpg" data-title="1대1 대결" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-10.jpg" alt="맨투맨으로 패스를 저지하려는 순간" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">1대1 대결</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-11.jpg" data-title="패스 다툼" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-11.jpg" alt="숲을 배경으로 펼쳐지는 팀 간 접전" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">패스 다툼</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-13.jpg" data-title="질주하는 선수들" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-13.jpg" alt="빠르게 트라이 라인을 향해 달리는 모습" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">질주하는 선수들</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-15.jpg" data-title="경기 전 몸풀기" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-15.jpg" alt="깃발 아래에서 몸을 푸는 선수들" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">경기 전 몸풀기</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-17.jpg" data-title="다이빙 터치다운" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-17.jpg" alt="몸을 던져 공을 터치하는 순간" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">다이빙 터치다운</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-19.jpg" data-title="터치럭비 공" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-19.jpg" alt="경기장 위에 놓인 터치럭비 공" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">터치럭비 공</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-20.jpg" data-title="남녀노소 함께" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-20.jpg" alt="다양한 연령대가 함께 뛰는 모습" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">남녀노소 함께</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-21.jpg" data-title="패스 캐치" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-21.jpg" alt="패스를 받아내는 순간의 집중력" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">패스 캐치</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-24.jpg" data-title="볼 캐리" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-24.jpg" alt="공을 들고 전진하는 선수" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">볼 캐리</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-26.jpg" data-title="크로스 플레이" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-26.jpg" alt="엇갈리며 만들어내는 공격 전개" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">크로스 플레이</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-27.jpg" data-title="팀 동료들과 함께" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-27.jpg" alt="여러 선수가 함께하는 경기 장면" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">팀 동료들과 함께</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-28.jpg" data-title="팀 허들" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-28.jpg" alt="경기 중 모여 작전을 나누는 팀" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">팀 허들</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-29.jpg" data-title="사이드라인 플레이" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-29.jpg" alt="사이드라인 근처에서의 공 처리" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">사이드라인 플레이</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+      <div class="gallery-card" data-img="images/gallery-30.jpg" data-title="여성 선수의 대결" data-meta="Tournament · 2026.05">
+        <div class="img-wrap"><img src="images/gallery-30.jpg" alt="여성 선수들의 활약이 돋보이는 장면" loading="lazy"></div>
+        <div class="gallery-cap">
+          <div class="g-title">여성 선수의 대결</div>
+          <div class="g-meta">Tournament · 2026.05</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light-section">
+  <div class="wrap">
+    <div class="cta-banner">
+      <h2>더 많은 순간이 궁금하다면</h2>
+      <p class="desc">인스타그램에서 매주 업데이트되는 훈련·대회 사진을 가장 먼저 만나보세요.</p>
+      <a class="btn btn-primary" href="https://www.instagram.com/everyones_touchrugby?igsh=MXd1ODJoMzlxYmlvNA==" target="_blank">Instagram 팔로우하기 →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="dark-section">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="fmark"><img src="images/logo.png" alt="ETR logo"></div>
+        <div>
+          <div class="en-name">ETR</div>
+          <div class="kr-name">EVERYONE'S TOUCH RUGBY · SEOUL</div>
+          <p>한국 유일의 터치럭비 커뮤니티. 당신의 첫 터치를 응원합니다.</p>
+        </div>
+      </div>
+      <div class="footer">
+        <h4>QUICK LINKS</h4>
+        <ul>
+          <li><a href="etr-touch-rugby-blackorange.html#about">소개 · About</a></li>
+          <li><a href="etr-touch-rugby-blackorange.html#join">참가안내 · Join</a></li>
+          <li><a href="gallery.html">갤러리 · Gallery</a></li>
+          <li><a href="bylaws.html">회칙</a></li>
+          <li><a href="privacy.html">개인정보처리방침</a></li>
+        </ul>
+      </div>
+      <div class="footer">
+        <h4>CONTACT</h4>
+        <ul>
+          <li><a href="https://open.kakao.com/o/sma8Kcph" target="_blank">카카오톡 오픈채팅</a></li>
+          <li><a href="https://www.instagram.com/everyones_touchrugby?igsh=MXd1ODJoMzlxYmlvNA==" target="_blank">@everyones_touchrugby</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <span>© 2026 Everyone's Touch Rugby. All rights reserved.</span>
+      <span>Seoul, South Korea</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="닫기">✕</button>
+  <figure>
+    <img id="lightboxImg" src="" alt="">
+    <figcaption>
+      <div class="g-title" id="lightboxTitle"></div>
+      <div class="g-meta" id="lightboxMeta"></div>
+    </figcaption>
+  </figure>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/supabase-config.js"></script>
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const dropdown = document.getElementById('dropdownMenu');
+  menuBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    dropdown.classList.toggle('open');
+  });
+  dropdown.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ dropdown.classList.remove('open'); });
+  });
+  document.addEventListener('click', function(e){
+    if(!dropdown.contains(e.target) && e.target !== menuBtn){
+      dropdown.classList.remove('open');
+    }
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxMeta = document.getElementById('lightboxMeta');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  const galleryGrid = document.getElementById('galleryGrid');
+
+  // Event delegation: works for both the static fallback cards below
+  // and any cards rendered dynamically from Supabase.
+  galleryGrid.addEventListener('click', function(e){
+    const card = e.target.closest('.gallery-card');
+    if(!card) return;
+    lightboxImg.src = card.dataset.img;
+    lightboxImg.alt = card.dataset.title;
+    lightboxTitle.textContent = card.dataset.title;
+    lightboxMeta.textContent = card.dataset.meta;
+    lightbox.classList.add('open');
+  });
+  function closeLightbox(){ lightbox.classList.remove('open'); }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){
+    if(e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+
+  // ---------------- Dynamic gallery (Supabase) ----------------
+  // 관리자 페이지(admin.html)에서 사진을 추가/삭제하면 여기 자동 반영됩니다.
+  // Supabase가 아직 연결되지 않았거나 등록된 사진이 없으면, 위의 기본 사진 5장이 계속 보입니다.
+  function escapeHtml(str){
+    if(str === null || str === undefined) return '';
+    return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  async function loadDynamicGallery(){
+    try{
+      const { data, error } = await supabaseClient
+        .from('gallery_photos')
+        .select('*')
+        .order('sort_order', { ascending: true })
+        .order('created_at', { ascending: false });
+
+      if(error || !data || data.length === 0) return; // keep static fallback
+
+      galleryGrid.innerHTML = data.map(function(photo, i){
+        const { data: urlData } = supabaseClient.storage.from('gallery').getPublicUrl(photo.image_path);
+        const imgUrl = urlData.publicUrl;
+        const featureClass = i === 0 ? ' feature' : '';
+        return `
+          <div class="gallery-card${featureClass}" data-img="${imgUrl}" data-title="${escapeHtml(photo.title)}" data-meta="${escapeHtml(photo.meta)}">
+            <div class="img-wrap"><img src="${imgUrl}" alt="${escapeHtml(photo.title)}" loading="lazy"></div>
+            <div class="gallery-cap">
+              <div class="g-title">${escapeHtml(photo.title)}</div>
+              <div class="g-meta">${escapeHtml(photo.meta)}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    } catch(err){
+      console.error('갤러리를 불러오지 못했습니다. 기본 사진을 표시합니다.', err);
+    }
+  }
+  // 갤러리는 위에서 직접 고른 20장 사진을 고정으로 보여줍니다.
+  // Supabase 연동 갤러리를 다시 쓰고 싶으면 아래 줄의 주석을 해제하세요.
+  // loadDynamicGallery();
+</script>
+
+</body>
+</html>
