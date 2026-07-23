@@ -395,37 +395,50 @@
   }
   .intro-gate.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
   .intro-slogan{
-    position:absolute; z-index:2;
-    top:26%; left:50%; transform:translateX(-50%);
-    width:82%; max-width:360px; margin:0;
+    position:absolute; z-index:3;
+    top:26%; left:0; right:0; margin:0 auto;
+    width:82%; max-width:360px;
     font-family:var(--display-font);
     font-size:clamp(28px, 7.5vw, 42px); font-weight:800; color:#fff;
     line-height:1.2; text-align:center; text-shadow:0 6px 30px rgba(0,0,0,0.4);
-    opacity:0;
-    animation:introFade .5s ease forwards 0s;
+    opacity:0; transform:translateY(-28px);
+    animation:introSlideDown .55s cubic-bezier(.22,.7,.32,1) forwards 0s;
   }
   .intro-players{
     position:absolute; z-index:1;
     left:8.8%; top:44.4%; width:91.2%; height:41.6%;
     background-image:url('images/intro-players-mobile.png');
     background-size:100% 100%; background-repeat:no-repeat;
-    opacity:0;
-    animation:introFade .5s ease forwards .15s;
+    opacity:0; transform:translateX(50px);
+    animation:introSlideLeft .6s cubic-bezier(.22,.7,.32,1) forwards .15s;
   }
   .intro-enter{
-    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    position:absolute; z-index:3;
+    left:32%; top:79%; width:36%; min-height:42px;
+    display:flex; align-items:center; justify-content:center;
+    background:#1a0f07; border:1.5px solid rgba(255,255,255,0.55);
+    border-radius:100px; color:#fff; font-weight:800; letter-spacing:.2px;
+    font-size:clamp(11px, 3vw, 13px); font-family:var(--display-font);
+    cursor:pointer; padding:10px 12px; box-shadow:0 8px 24px rgba(0,0,0,0.5);
+    opacity:0; transform:translateY(28px);
+    animation:introSlideUp .5s cubic-bezier(.22,.7,.32,1) forwards .5s;
   }
-  @keyframes introFade{ to{ opacity:1; } }
+  .intro-enter:hover{ background:#2a1a0d; }
+  @keyframes introSlideDown{ to{ opacity:1; transform:translateY(0); } }
+  @keyframes introSlideLeft{ to{ opacity:1; transform:translateX(0); } }
+  @keyframes introSlideUp{ to{ opacity:1; transform:translateY(0); } }
   @media (min-width:768px){
     .intro-gate{ background-image:url('images/intro-bg-pc.jpg'); }
     .intro-slogan{
-      top:22%; left:8.85%; transform:none;
+      top:22%; left:8.85%; right:auto; margin:0;
       width:56%; max-width:560px; text-align:left;
     }
     .intro-players{
       left:44.2%; top:21%; width:55.8%; height:68%;
       background-image:url('images/intro-players-pc.png');
+    }
+    .intro-enter{
+      left:42%; top:80.8%; width:17%; min-width:200px; min-height:64px;
     }
   }
 </style>
@@ -435,7 +448,7 @@
 <section class="intro-gate" id="introGate">
   <h1 class="intro-slogan">What is your<br>Second Sport?</h1>
   <div class="intro-players"></div>
-  <button class="intro-enter" id="introEnter" type="button">터치해서 시작하기</button>
+  <button class="intro-enter" id="introEnter" type="button">터치해서 시작하기 🏉</button>
 </section>
 
 <header>
