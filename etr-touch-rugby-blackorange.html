@@ -402,7 +402,7 @@
     font-size:clamp(28px, 7.5vw, 42px); font-weight:800; color:#fff;
     line-height:1.2; text-align:center; text-shadow:0 6px 30px rgba(0,0,0,0.4);
     opacity:0; transform:translateY(-28px);
-    animation:introSlideDown .55s cubic-bezier(.22,.7,.32,1) forwards 0s;
+    animation:introSlideDown 1s cubic-bezier(.22,.7,.32,1) forwards 0s;
   }
   .intro-players{
     position:absolute; z-index:1;
@@ -410,7 +410,7 @@
     background-image:url('images/intro-players-mobile.png');
     background-size:100% 100%; background-repeat:no-repeat;
     opacity:0; transform:translateX(50px);
-    animation:introSlideLeft .6s cubic-bezier(.22,.7,.32,1) forwards .15s;
+    animation:introSlideLeft 1s cubic-bezier(.22,.7,.32,1) forwards .35s;
   }
   .intro-enter{
     position:absolute; z-index:3;
@@ -421,7 +421,7 @@
     font-size:clamp(11px, 3vw, 13px); font-family:var(--display-font);
     cursor:pointer; padding:10px 12px; box-shadow:0 8px 24px rgba(0,0,0,0.5);
     opacity:0; transform:translateY(28px);
-    animation:introSlideUp .5s cubic-bezier(.22,.7,.32,1) forwards .5s;
+    animation:introSlideUp 1s cubic-bezier(.22,.7,.32,1) forwards .8s;
   }
   .intro-enter:hover{ background:#2a1a0d; }
   @keyframes introSlideDown{ to{ opacity:1; transform:translateY(0); } }
